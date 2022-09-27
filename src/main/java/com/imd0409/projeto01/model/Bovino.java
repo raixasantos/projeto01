@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.imd0409.projeto01.model.enums.Cor;
+import com.imd0409.projeto01.model.enums.Sexo;
+
 @Entity
 @Table(name = "Bovino")
 public class Bovino {
@@ -22,6 +25,12 @@ public class Bovino {
 
     @Column(name = "aniversario")
     private LocalDate aniversario;
+
+    @Column(name = "sexo")
+    private Sexo sexo;
+
+    @Column(name = "cor")
+    private Cor cor;
     
     @Column(name = "peso")
     private Float peso;

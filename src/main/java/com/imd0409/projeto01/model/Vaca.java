@@ -1,15 +1,14 @@
 package com.imd0409.projeto01.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Vaca {
+public class Vaca extends Bovino{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "producaoLeite")
     private float producaoLeite;
@@ -25,11 +24,11 @@ public class Vaca {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

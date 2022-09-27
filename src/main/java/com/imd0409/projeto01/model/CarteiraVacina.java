@@ -20,4 +20,37 @@ public class CarteiraVacina {
     private Integer idAnimal;
 
     private List<Vacina> vacinas;
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getIdAnimal() {
+        return this.idAnimal;
+    }
+
+    public void setIdAnimal(Integer idAnimal) {
+        this.idAnimal = idAnimal;
+    }
+
+    public List<Vacina> getVacinas() {
+        return this.vacinas;
+    }
+
+    public void setVacinas(List<Vacina> vacinas) {
+        this.vacinas = vacinas;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", idAnimal='" + getIdAnimal() + "'" +
+            ", vacinas='" + getVacinas() + "'" +
+            "}";
+    }
 }
