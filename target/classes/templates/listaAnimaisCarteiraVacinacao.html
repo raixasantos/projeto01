@@ -5,44 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudantes</title>
+    <!-- JavaScript Bundle with Popper -->
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Lista de Animais</title>
 </head>
 
 <body>
 
 
 
-    <p>Lista de estudantes cadastrados: </p>
-    <ul>
-        <li th:each="estudante : ${estudantes}">
-            <span
-                th:text="'Nome:  ' + ${estudante.nome} + ' - Curso:  ' + ${estudante.curso} " />
-        </li>
-    </ul>
+    <p>Lista de animais com carteira de vacina: </p>
+    <br>
+    <div  class="container">
+
+        <table class="table  table-striped" style="background-color: #E0E7CA;">
+            <thead>
+              <tr class="text-center">
+                <th scope="col" >Nome</th>
+                <th scope="col">Carteira de Vacinação</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <th scope="row">Chiquinha</th>
+                <td><button type="button" class="btn px-5" style="background-color: #83A93A;">Ver</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Estrelinha</th>
+                <td><button type="button" class="btn px-5" style="background-color: #83A93A;">Ver</button></td>
+              </tr>
+              <tr>
+                <th scope="row">Serra Azul</th>
+                <td colspan="2"><button type="button" class="btn px-5" style="background-color: #83A93A;">Ver</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+      
+
+
+
+
+
+
+
     <br><br>
-    <p>Tabela com as infos</p>
-    <table>
-        <thead>
-          <tr>
-            <th th:text="Id"></th>
-            <th th:text="Nome"></th>
-            <th th:text="Curso"></th>
-            <th>Detalhes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="estudante: ${estudantes}">
-            <td th:text="${estudante.id}"></td>
-            <td th:text="${estudante.nome}"></td>
-            <td th:text="${estudante.curso}"></td>
-            <td><a th:href="@{/estudante/getEstudanteById/{id}(id=${estudante.id})}">veja aqui</a></td>
-            <td><a th:href="@{{EstudanteId}/delete(EstudanteId = ${estudante.id})}"> Apagar</a></td><br>
-          </tr>
-        </tbody>
-      </table>
-    <br><br>
-    <a href="showForm">Formulário de estudantes</a><br>
-    <a href="http://localhost:8080/">Menu Principal</a><br>
+    <a href="">Formulário de estudantes</a><br>
+    <a href="">Menu Principal</a><br>
     <a href="../avatar/getListaAvatares">Lista de avatares</a><br>
     
 
