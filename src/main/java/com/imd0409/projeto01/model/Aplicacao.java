@@ -1,39 +1,52 @@
 package com.imd0409.projeto01.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Aplicacao")
 public class Aplicacao {
-    @EmbeddedId
-    private AplicacaoKey id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
-    @MapsId
+    @JoinColumn(name = "idCarteira")
+    private Carteira carteira;
+
+    @ManyToOne
     @JoinColumn(name = "idVacina")
     private Vacina vacina;
-
-    @ManyToOne
-    @MapsId
-    @JoinColumn(name = "idCarteira")
-    private CarteiraVacina carteiraVacina;
 
     @Column(name = "dose")
     private Integer dose;
 
+    @Column(name = "data")
+    private LocalDate data;
+
     public Aplicacao() {
     }
-    public AplicacaoKey getId() {
+
+    public Aplicacao(Vacina vacina, Carteira carteira, Integer dose) {
+        this.vacina = vacina;
+        this.carteira = carteira;
+        this.dose = dose;
+    }
+
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(AplicacaoKey id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,12 +58,12 @@ public class Aplicacao {
         this.vacina = vacina;
     }
 
-    public CarteiraVacina getCarteiraVacina() {
-        return this.carteiraVacina;
+    public Carteira getCarteira() {
+       return this.carteira;
     }
 
-    public void setCarteiraVacina(CarteiraVacina carteiraVacina) {
-        this.carteiraVacina = carteiraVacina;
+    public void setCarteira(Carteira carteira) {
+       this.carteira = carteira;
     }
 
     public Integer getDose() {
@@ -65,8 +78,8 @@ public class Aplicacao {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
+            ", carteira='" + getCarteira() + "'" +
             ", vacina='" + getVacina() + "'" +
-            ", carteiraVacina='" + getCarteiraVacina() + "'" +
             ", dose='" + getDose() + "'" +
             "}";
     }

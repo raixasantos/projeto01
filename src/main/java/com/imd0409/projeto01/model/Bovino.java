@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.imd0409.projeto01.model.enums.Cor;
@@ -18,6 +18,7 @@ import com.imd0409.projeto01.model.enums.Sexo;
 @Entity
 @Table(name = "Bovino")
 public class Bovino {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,11 +44,22 @@ public class Bovino {
     @Column(name = "chifre")
     private Boolean chifre;
 
-    @OneToOne(mappedBy = "Bovino", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private CarteiraVacina carteiraVacina;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCarteira", referencedColumnName = "id")
+    private Carteira carteira;
 
     public Bovino() {
+    }
+
+    public Bovino(String nome, LocalDate aniversario, Sexo sexo, Cor cor, Float peso, Boolean doente, Boolean chifre, Carteira carteira) {
+        this.nome = nome;
+        this.aniversario = aniversario;
+        this.sexo = sexo;
+        this.cor = cor;
+        this.peso = peso;
+        this.doente = doente;
+        this.chifre = chifre;
+        this.carteira = carteira;
     }
 
     public Integer getId() {
@@ -122,12 +134,12 @@ public class Bovino {
         this.chifre = chifre;
     }
 
-    public CarteiraVacina getCarteiraVacina() {
-        return this.carteiraVacina;
+    public Carteira getCarteira() {
+        return this.carteira;
     }
 
-    public void setCarteiraVacina(CarteiraVacina carteiraVacina) {
-        this.carteiraVacina = carteiraVacina;
+    public void setCarteira(Carteira carteira) {
+        this.carteira = carteira;
     }
 
     @Override
@@ -141,7 +153,7 @@ public class Bovino {
             ", peso='" + getPeso() + "'" +
             ", doente='" + isDoente() + "'" +
             ", chifre='" + isChifre() + "'" +
-            ", carteiraVacina='" + getCarteiraVacina() + "'" +
+            ", carteira='" + getCarteira() + "'" +
             "}";
     }
 }
