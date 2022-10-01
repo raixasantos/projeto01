@@ -1,11 +1,16 @@
 package com.imd0409.projeto01.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Boi")
 public class Boi extends Bovino{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -16,10 +21,8 @@ public class Boi extends Bovino{
     @Column(name = "castrado")
     private Boolean castrado;
 
-
     public Boi() {
     }
-
 
     public Integer getId() {
         return this.id;

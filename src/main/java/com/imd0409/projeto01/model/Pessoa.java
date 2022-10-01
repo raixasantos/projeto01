@@ -10,6 +10,7 @@ import javax.persistence.Column;
 @Entity
 @Table(name = "Pessoa")
 public class Pessoa {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -47,6 +48,19 @@ public class Pessoa {
 
 
     public Pessoa() {
+    }
+
+    public Pessoa(String nome, String telefone, String cpf, String email, String cidade, String estado, String cep, String bairro, String rua, String numero) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.email = email;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.rua = rua;
+        this.numero = numero;
     }
 
 
