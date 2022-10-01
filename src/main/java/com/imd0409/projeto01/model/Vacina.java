@@ -1,15 +1,19 @@
 package com.imd0409.projeto01.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 public class Vacina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "nome", length = 100)
     private String nome;
@@ -26,10 +30,11 @@ public class Vacina {
     @Column(name = "informacoesExtras", length = 150)
     private String informacoesExtras;
 
+    @OneToMany(mappedBy = "Vacina", fetch = FetchType.LAZY)
+    private Set<Aplicacao> aplicacoes;
     
     public Vacina() {
     }
-
 
     public int getId() {
         return this.id;
@@ -79,6 +84,13 @@ public class Vacina {
         this.informacoesExtras = informacoesExtras;
     }
 
+    public Set<Aplicacao> getAplicacoes() {
+        return this.aplicacoes;
+    }
+
+    public void setAplicacoes(Set<Aplicacao> aplicacoes) {
+        this.aplicacoes = aplicacoes;
+    }
 
     @Override
     public String toString() {
@@ -89,8 +101,7 @@ public class Vacina {
             ", periodoEmDias='" + getPeriodoEmDias() + "'" +
             ", quantidadeDeMls='" + getQuantidadeDeMls() + "'" +
             ", informacoesExtras='" + getInformacoesExtras() + "'" +
+            ", aplicacoes='" + getAplicacoes() + "'" +
             "}";
     }
-
-
 }

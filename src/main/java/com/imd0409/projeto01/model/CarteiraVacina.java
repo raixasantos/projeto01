@@ -1,25 +1,33 @@
 package com.imd0409.projeto01.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CarteiraVacina")
 public class CarteiraVacina {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idBovino")
     private Integer id;
     
-    @Column(name = "idAnimal")
-    private Integer idAnimal;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "idBovino")
+    private Bovino Bovino;
 
-    private List<Vacina> vacinas;
+    @OneToMany(mappedBy = "CarteiraVacina")
+    private Set<Aplicacao> aplicacoes;
+
+    public CarteiraVacina() {
+    }
 
     public Integer getId() {
         return this.id;
@@ -29,28 +37,28 @@ public class CarteiraVacina {
         this.id = id;
     }
 
-    public Integer getIdAnimal() {
-        return this.idAnimal;
+    public Bovino getBovino() {
+        return this.Bovino;
     }
 
-    public void setIdAnimal(Integer idAnimal) {
-        this.idAnimal = idAnimal;
+    public void setBovino(Bovino Bovino) {
+        this.Bovino = Bovino;
     }
 
-    public List<Vacina> getVacinas() {
-        return this.vacinas;
+    public Set<Aplicacao> getAplicacoes() {
+        return this.aplicacoes;
     }
 
-    public void setVacinas(List<Vacina> vacinas) {
-        this.vacinas = vacinas;
+    public void setAplicacoes(Set<Aplicacao> aplicacoes) {
+        this.aplicacoes = aplicacoes;
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", idAnimal='" + getIdAnimal() + "'" +
-            ", vacinas='" + getVacinas() + "'" +
+            ", Bovino='" + getBovino() + "'" +
+            ", aplicacoes='" + getAplicacoes() + "'" +
             "}";
     }
 }
