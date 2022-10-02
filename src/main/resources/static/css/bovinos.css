@@ -23,4 +23,9 @@
 
 .link {
     text-decoration: none;
+    color: white;
+}
+
+.link:hover {
+    color:#6D3B00
 }

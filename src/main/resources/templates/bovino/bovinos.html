@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title><meta charset="UTF-8">
+    <title>Bovinos</title><meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- JavaScript Bundle with Popper -->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
-    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bovino.css}" rel="stylesheet"/>
 </head>
 <body>
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
-    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Home</p>
+    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Bovinos</p>
 
     <div class="guardaBotao">
+        <button type="submit" class="botao"><a href="cadastroBovinos.html" class="link">Cadastro de Bovinos</a></button>
 
-        <a href="listaVacinas.html" class="link"><button type="submit" class="botao">Vacinas</button></a>
+        <button type="submit" class="botao"><a href="carteiraVacinacao.html" class="link">Carteira de Vacinação</a></button>
 
-        <a href="bovinos.html" class="link"><button type="submit" class="botao">Bovinos</button></a>
-
-        <a href="cadastroPessoas.html" class="link"><button type="submit" class="botao">Usuário</button></a>
-        
+        <button type="submit" class="botao"><a href="listaAnimaisCarteiraVacinacao.html" class="link">Lista animais com carteira</a></button>
     </div>
+    
 
     <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
 </body>
