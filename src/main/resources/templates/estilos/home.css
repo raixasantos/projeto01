@@ -1,0 +1,26 @@
+*body {
+    margin: 0;
+}
+
+.guardaBotao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.botao {
+    background-color: #83A93A;
+    color: white;
+    margin-top: 2em;
+    width: 28em;
+    border-radius: 1em;
+    border-color: #6D3B00;
+    padding: 0.2em;
+    font-size: 14pt;
+}
+
+.link {
+    text-decoration: none;
+}
