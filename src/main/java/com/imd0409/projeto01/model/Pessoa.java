@@ -46,7 +46,6 @@ public class Pessoa {
     @Column(name = "numero", length = 50)
     private String numero;
 
-
     public Pessoa() {
     }
 
@@ -62,7 +61,6 @@ public class Pessoa {
         this.rua = rua;
         this.numero = numero;
     }
-
 
     public Integer getId() {
         return this.id;
@@ -151,7 +149,6 @@ public class Pessoa {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    
 
     @Override
     public String toString() {
@@ -169,5 +166,4 @@ public class Pessoa {
             ", numero='" + getNumero() + "'" +
             "}";
     }
-   
 }

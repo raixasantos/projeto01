@@ -17,23 +17,22 @@
 
     <div class="formularioCadastroVacinas">
     
-        <form class="formulario">
+        <form class="formulario" action="#" th:action="@{/vacina/adicionarVacina}" th:object="${vacina}" method="post">
             
             <div class="sub-div">
                 <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="nomeVacina" name="nomeVacina"/>
+                <input type="text" class="nomeVacina" th:field="*{nome}"/>
 
                 <div class="id_"><p>Fabricante</p></div> 
-                <input type="text" class="fabricanteVacina" name="dosesVacina"/>
+                <select class="fabricanteVacina">
+                    <option th:each="fabricante: ${fabricantes}" th:value="${fabricante.id}" th:text="${fabricante.nome}">
+                </select>
 
                 <div class="id_"><p>Periodo em dias</p></div> 
-                <input type="number" class="periodoVacina" name="atrasosVacina"/>
-
-                <div class="id_"><p>Quantidade de Mls</p></div> 
-                <input type="number" class="quantidadeVacina" name="idAnimalVacina"/>
+                <input type="number" min="0" class="periodoVacina" th:field="*{periodoEmDias}"/>
 
                 <div class="id_"><p>Informações Extras</p></div> 
-                <input type="text" class="informacaoVacina" name="dosesVacina"/>
+                <input type="text" class="informacaoVacina" th:field="*{informacoesExtras}"/>
             </div>
             <button type="submit" class="botao">Cadastrar</button>
         </form>

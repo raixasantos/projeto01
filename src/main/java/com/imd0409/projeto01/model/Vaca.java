@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Vaca")
-public class Vaca extends Bovino{
+public class Vaca {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,6 @@ public class Vaca extends Bovino{
 
     public Vaca() {
     }
-
 
     public Integer getId() {
         return this.id;
@@ -75,6 +74,13 @@ public class Vaca extends Bovino{
         this.gravida = gravida;
     }
 
+    public Bovino getBovino() {
+        return this.bovino;
+    }
+
+    public void setBovino(Bovino bovino) {
+        this.bovino = bovino;
+    }
 
     @Override
     public String toString() {
@@ -83,7 +89,7 @@ public class Vaca extends Bovino{
             ", producaoLeite='" + getProducaoLeite() + "'" +
             ", darLeite='" + isDarLeite() + "'" +
             ", gravida='" + isGravida() + "'" +
+            ", bovino='" + getBovino() + "'" +
             "}";
     }
-
 }

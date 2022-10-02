@@ -156,4 +156,22 @@ public class Fabricante {
     public void setVacinas(List<Vacina> vacinas) {
         this.vacinas = vacinas;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", ddg='" + getDdg() + "'" +
+            ", cnpj='" + getCnpj() + "'" +
+            ", nacionalidadeIndustria='" + getNacionalidadeIndustria() + "'" +
+            ", cidade='" + getCidade() + "'" +
+            ", estado='" + getEstado() + "'" +
+            ", cep='" + getCep() + "'" +
+            ", bairro='" + getBairro() + "'" +
+            ", rua='" + getRua() + "'" +
+            ", numero='" + getNumero() + "'" +
+            ", vacinas='" + getVacinas() + "'" +
+            "}";
+    }
 }

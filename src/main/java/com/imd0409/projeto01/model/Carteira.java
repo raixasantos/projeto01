@@ -61,7 +61,7 @@ public class Carteira {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", Bovino='" + getBovino() + "'" +
+            ", bovino='" + getBovino() + "'" +
             ", aplicacoes='" + getAplicacoes() + "'" +
             "}";
     }

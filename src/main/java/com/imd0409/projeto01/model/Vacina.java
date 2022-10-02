@@ -37,4 +37,64 @@ public class Vacina {
     
     public Vacina() {
     }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Fabricante> getFabricantes() {
+        return this.fabricantes;
+    }
+
+    public void setFabricantes(List<Fabricante> fabricantes) {
+        this.fabricantes = fabricantes;
+    }
+
+    public int getPeriodoEmDias() {
+        return this.periodoEmDias;
+    }
+
+    public void setPeriodoEmDias(int periodoEmDias) {
+        this.periodoEmDias = periodoEmDias;
+    }
+
+    public String getInformacoesExtras() {
+        return this.informacoesExtras;
+    }
+
+    public void setInformacoesExtras(String informacoesExtras) {
+        this.informacoesExtras = informacoesExtras;
+    }
+
+    public List<Aplicacao> getAplicacoes() {
+        return this.aplicacoes;
+    }
+
+    public void setAplicacoes(List<Aplicacao> aplicacoes) {
+        this.aplicacoes = aplicacoes;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", fabricantes='" + getFabricantes() + "'" +
+            ", periodoEmDias='" + getPeriodoEmDias() + "'" +
+            ", informacoesExtras='" + getInformacoesExtras() + "'" +
+            ", aplicacoes='" + getAplicacoes() + "'" +
+            "}";
+    }
 }
