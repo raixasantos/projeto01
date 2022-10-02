@@ -29,3 +29,11 @@
 .link:hover {
     color:#6D3B00
 }
+
+.botaoEditar {
+    background-color: rgb(27, 121, 235);
+}
+
+.botaoApagar {
+    background-color: rgb(200, 20, 20);
+}
