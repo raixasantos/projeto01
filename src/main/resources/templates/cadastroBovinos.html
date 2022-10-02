@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JavaScript Bundle with Popper -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./estilos/cadastroBovinos.css">
+    
+    <title>Cadastro de Bovinos</title>
+</head>
+<body>
+    <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
+    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Bovinos</p>
+
+    <div class="formularioCadastroBovino">
+    
+        <form class="formulario">
+            
+            <div class="sub-div">
+                <div class="id_"><p>ID</p></div> 
+                <input type="text" class="idBovino" name="idBovino"/>
+
+                <div class="id_"><p>Nome</p></div> 
+                <input type="text" class="nomeBovino" name="nomeBovino"/>
+
+                <div class="id_"><p>Raça</p></div> 
+                <input type="text" class="racaBovino" name="racaBovino"/>
+
+                <div class="id_"><p>Peso</p></div> 
+                <input type="number" class="pesoBovino" name="pesoBovino"/>
+
+                <div class="id_"><p>Idade</p></div> 
+                <input type="number" class="idadeBovino" name="idadeBovino"/>
+
+                <div class="id_"><p>Sexo</p></div> 
+                <input type="text" class="sexoBovino" name="sexoBovino"/>
+            </div>
+            <button type="submit" class="botao">Cadastrar</button>
+        </form>
+
+    </div>
+
+    <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+</div>
+
+</body>
+</html>
