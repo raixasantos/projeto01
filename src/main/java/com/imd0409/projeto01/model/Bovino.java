@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,6 +44,12 @@ public class Bovino {
 
     @Column(name = "chifre")
     private Boolean chifre;
+
+    @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
+    private Boi boi;
+
+    @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
+    private Vaca vaca;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idCarteira", referencedColumnName = "id")

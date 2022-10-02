@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -50,6 +52,10 @@ public class Fabricante {
     private String numero;
 
     @ManyToMany
+    @JoinTable(
+        name = "fabricanteVacina", 
+        joinColumns = @JoinColumn(name = "idFabricante"), 
+        inverseJoinColumns = @JoinColumn(name = "idVacina"))
     private List<Vacina> vacinas;
 
     public Fabricante() {
@@ -150,7 +156,4 @@ public class Fabricante {
     public void setVacinas(List<Vacina> vacinas) {
         this.vacinas = vacinas;
     }
-
-
-
 }

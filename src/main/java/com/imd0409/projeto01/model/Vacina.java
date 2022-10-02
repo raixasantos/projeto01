@@ -23,14 +23,11 @@ public class Vacina {
     @Column(name = "nome", length = 100)
     private String nome;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "vacinas")
     private List<Fabricante> fabricantes;
 
     @Column(name = "periodoEmDias")
     private int periodoEmDias;
-
-    @Column(name = "quantidadeDeMls")
-    private float quantidadeDeMls;
 
     @Column(name = "informacoesExtras", length = 150)
     private String informacoesExtras;
