@@ -1,0 +1,44 @@
+*body {
+    margin: 0%;
+}
+
+.formularioCadastroBovino, .formulario, .sub-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.formularioCadastroBovino {
+    padding-bottom: 2em;
+}
+
+.sub-div {
+    width:fit-content;
+    margin: 0;
+}
+
+.id_ {
+    width: 40em;
+    font-weight: bold; 
+    margin-top: 1em;
+}
+
+.idBovino, .nomeBovino, .racaBovino, .pesoBovino, .idadeBovino, .sexoBovino {
+    width: 40em;
+    border-radius: 1em;
+    border: solid 1.5px #6D3B00;
+    background-color: #eaece2;
+    margin-top: -1em;
+}
+
+.botao {
+    background-color: #83A93A;
+    color: white;
+    margin-top: 2em;
+    width: 40em;
+    border-radius: 1em;
+    border-color: #6D3B00;
+    padding: 0.2em;
+}

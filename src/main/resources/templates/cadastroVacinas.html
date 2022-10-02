@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JavaScript Bundle with Popper -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./estilos/cadastroVacinas.css">
+    
+    <title>Cadastro de Vacinas</title>
+</head>
+<body>
+    <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
+    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Vacinas</p>
+
+    <div class="formularioCadastroVacinas">
+    
+        <form class="formulario">
+            
+            <div class="sub-div">
+                <div class="id_"><p>Nome</p></div> 
+                <input type="text" class="nomeVacina" name="nomeVacina"/>
+
+                <div class="id_"><p>Fabricante</p></div> 
+                <input type="text" class="fabricanteVacina" name="dosesVacina"/>
+
+                <div class="id_"><p>Periodo em dias</p></div> 
+                <input type="number" class="periodoVacina" name="atrasosVacina"/>
+
+                <div class="id_"><p>Quantidade de Mls</p></div> 
+                <input type="number" class="quantidadeVacina" name="idAnimalVacina"/>
+
+                <div class="id_"><p>Informações Extras</p></div> 
+                <input type="text" class="informacaoVacina" name="dosesVacina"/>
+            </div>
+            <button type="submit" class="botao">Cadastrar</button>
+        </form>
+
+    </div>
+
+    <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+</div>
+
+</body>
+</html>
