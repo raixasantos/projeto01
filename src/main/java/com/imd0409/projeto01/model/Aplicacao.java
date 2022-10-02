@@ -50,20 +50,20 @@ public class Aplicacao {
         this.id = id;
     }
 
+    public Carteira getCarteira() {
+        return this.carteira;
+    }
+
+    public void setCarteira(Carteira carteira) {
+        this.carteira = carteira;
+    }
+
     public Vacina getVacina() {
         return this.vacina;
     }
 
     public void setVacina(Vacina vacina) {
         this.vacina = vacina;
-    }
-
-    public Carteira getCarteira() {
-       return this.carteira;
-    }
-
-    public void setCarteira(Carteira carteira) {
-       this.carteira = carteira;
     }
 
     public Integer getDose() {
@@ -74,6 +74,14 @@ public class Aplicacao {
         this.dose = dose;
     }
 
+    public LocalDate getData() {
+        return this.data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -81,6 +89,7 @@ public class Aplicacao {
             ", carteira='" + getCarteira() + "'" +
             ", vacina='" + getVacina() + "'" +
             ", dose='" + getDose() + "'" +
+            ", data='" + getData() + "'" +
             "}";
     }
 }

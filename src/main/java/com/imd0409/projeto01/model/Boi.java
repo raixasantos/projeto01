@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Boi")
-public class Boi extends Bovino{
+public class Boi {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Boi extends Bovino{
     }
 
     public Bovino getBovino() {
-        return bovino;
+        return this.bovino;
     }
 
     public void setBovino(Bovino bovino) {
@@ -71,14 +71,13 @@ public class Boi extends Bovino{
         this.castrado = castrado;
     }
 
-
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
+            ", bovino='" + getBovino() + "'" +
             ", reprodutor='" + isReprodutor() + "'" +
             ", castrado='" + isCastrado() + "'" +
             "}";
     }
-
 }

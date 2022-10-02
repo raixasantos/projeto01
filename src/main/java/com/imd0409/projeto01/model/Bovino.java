@@ -39,14 +39,8 @@ public class Bovino {
     @Column(name = "peso")
     private Float peso;
 
-    @Column(name = "doente")
-    private Boolean doente;
-
     @Column(name = "chifre")
     private Boolean chifre;
-
-    @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
-    private Boi boi;
 
     @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
     private Vaca vaca;
@@ -58,13 +52,12 @@ public class Bovino {
     public Bovino() {
     }
 
-    public Bovino(String nome, LocalDate aniversario, Sexo sexo, Cor cor, Float peso, Boolean doente, Boolean chifre, Carteira carteira) {
+    public Bovino(String nome, LocalDate aniversario, Sexo sexo, Cor cor, Float peso, Boolean chifre, Carteira carteira) {
         this.nome = nome;
         this.aniversario = aniversario;
         this.sexo = sexo;
         this.cor = cor;
         this.peso = peso;
-        this.doente = doente;
         this.chifre = chifre;
         this.carteira = carteira;
     }
@@ -117,18 +110,6 @@ public class Bovino {
         this.peso = peso;
     }
 
-    public Boolean isDoente() {
-        return this.doente;
-    }
-
-    public Boolean getDoente() {
-        return this.doente;
-    }
-
-    public void setDoente(Boolean doente) {
-        this.doente = doente;
-    }
-
     public Boolean isChifre() {
         return this.chifre;
     }
@@ -139,6 +120,14 @@ public class Bovino {
 
     public void setChifre(Boolean chifre) {
         this.chifre = chifre;
+    }
+
+    public Vaca getVaca() {
+        return this.vaca;
+    }
+
+    public void setVaca(Vaca vaca) {
+        this.vaca = vaca;
     }
 
     public Carteira getCarteira() {
@@ -158,8 +147,8 @@ public class Bovino {
             ", sexo='" + getSexo() + "'" +
             ", cor='" + getCor() + "'" +
             ", peso='" + getPeso() + "'" +
-            ", doente='" + isDoente() + "'" +
             ", chifre='" + isChifre() + "'" +
+            ", vaca='" + getVaca() + "'" +
             ", carteira='" + getCarteira() + "'" +
             "}";
     }
