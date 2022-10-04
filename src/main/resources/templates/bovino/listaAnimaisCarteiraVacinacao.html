@@ -16,35 +16,18 @@
         <table class="table table-bordered table-bordered" >
             <thead class="text-center" style="background-color:#E0E7CA;">
             <tr>
-                <th scope="col"><div class="center">Nome</div></th>
+                <th scope="col" th:text="Id"></th>
+                <th scope="col" th:text="Nome"></th>
                 <th scope="col">Carteira de Vacinação</th>
             </tr>
             </thead>
             <tbody class="text-center" style="background-color:#E0E7CA;">
-                <tr>
-                    <th scope="row">Jujuba</th>
+                <tr th:each="bovino: ${bovinos}">
+                    <td th:text="${bovino.id}"></td>
+                    <td scope="row" th:text="${bovino.nome}"></td>
                     <td><button class="btn btn-primary" type="submit">Ver</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">Maria</th>
-                    <td><button class="btn btn-primary" type="submit">Ver</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Tonhao</th>
-                    <td><button class="btn btn-primary" type="submit">Ver</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Jujuba</th>
-                    <td><button class="btn btn-primary" type="submit">Ver</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Maria</th>
-                    <td><button class="btn btn-primary" type="submit">Ver</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">Tonhao</th>
-                    <td><button class="btn btn-primary" type="submit">Ver</button></td>
-                </tr>
+                
             </tbody>
         </table>
         </div>

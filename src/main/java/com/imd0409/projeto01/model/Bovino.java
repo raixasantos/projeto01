@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.imd0409.projeto01.model.enums.Cor;
 import com.imd0409.projeto01.model.enums.Sexo;
 
@@ -28,6 +30,7 @@ public class Bovino {
     private String nome;
 
     @Column(name = "aniversario")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate aniversario;
 
     @Column(name = "sexo")

@@ -17,26 +17,25 @@
 
     <div class="formularioCadastroBovino">
     
-        <form class="formulario">
+        <form class="formulario" action="#" th:action="@{/bovino/adicionarBovino}" th:object="${bovino}" method="post">
             
             <div class="sub-div">
-                <div class="id_"><p>ID</p></div> 
-                <input type="text" class="idBovino" name="idBovino"/>
-
                 <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="nomeBovino" name="nomeBovino"/>
+                <input type="text" class="nomeBovino" th:field="*{nome}"/>
 
-                <div class="id_"><p>Raça</p></div> 
-                <input type="text" class="racaBovino" name="racaBovino"/>
 
                 <div class="id_"><p>Peso</p></div> 
-                <input type="number" class="pesoBovino" name="pesoBovino"/>
+                <input type="number" class="pesoBovino" th:field="*{peso}"/>
 
                 <div class="id_"><p>Idade</p></div> 
-                <input type="number" class="idadeBovino" name="idadeBovino"/>
-
+                <input type="date" class="idadeBovino" th:field="*{aniversario}"/>
+                
                 <div class="id_"><p>Sexo</p></div> 
-                <input type="text" class="sexoBovino" name="sexoBovino"/>
+                <select name="Sexo" class="sexoBovino" th:field="*{sexo}">
+                    <option th:each="sexoOpt : ${bovinos}" th:value="${sexoOpt.nome}" th:text="${sexoOpt.nome}"></option>
+                </select>
+
+
             </div>
             <button type="submit" class="botao">Cadastrar</button>
         </form>
