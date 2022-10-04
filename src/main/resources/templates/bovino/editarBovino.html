@@ -33,9 +33,10 @@
                 <input type="date" class="idadeBovino" th:field="*{aniversario}"/>
                 
                 <div class="id_"><p>Sexo</p></div> 
-                <select name="Sexo" class="sexoBovino" th:field="*{sexo}">
-                    <option th:each="sexoOpt : ${bovinos}" th:value="${sexoOpt.nome}" th:text="${sexoOpt.nome}"></option>
-                </select>
+                <div class="id_"></div><p> 
+                    <input type="radio" th:field="*{sexo}" th:value="Femea" th:text="Femea"/>
+                    <input type="radio" th:field="*{sexo}" th:value="Macho" th:text="Macho"/>
+                </p></div>
 
 
             </div>

@@ -34,7 +34,7 @@ public class Bovino {
     private LocalDate aniversario;
 
     @Column(name = "sexo")
-    private Sexo sexo;
+    private String sexo;
 
     @Column(name = "cor")
     private Cor cor;
@@ -55,7 +55,7 @@ public class Bovino {
     public Bovino() {
     }
 
-    public Bovino(String nome, LocalDate aniversario, Sexo sexo, Cor cor, Float peso, Boolean chifre, Carteira carteira) {
+    public Bovino(String nome, LocalDate aniversario, String sexo, Cor cor, Float peso, Boolean chifre, Carteira carteira) {
         this.nome = nome;
         this.aniversario = aniversario;
         this.sexo = sexo;
@@ -89,11 +89,11 @@ public class Bovino {
         this.aniversario = aniversario;
     }
 
-    public Sexo getSexo() {
+    public String getSexo() {
         return this.sexo;
     }
 
-    public void setSexo(Sexo sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
