@@ -1,6 +1,7 @@
 package com.imd0409.projeto01.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,22 @@ public class BovinoServiceImpl implements BovinoService{
     @Override
     public List<Bovino> getListaBovino() {
         return bovinoRepository.findAll();
+    }
+
+    @Override
+    public void apagarBovino(Integer id) {
+        bovinoRepository.deleteById(id);        
+    }
+
+    @Override
+    public void editarBovino(Bovino bovino) {
+        bovinoRepository.save(bovino);
+        
+    }
+
+    @Override
+    public Optional<Bovino> getBovinoById(Integer id) {
+        return bovinoRepository.findById(id);
     }
 
 }

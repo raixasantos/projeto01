@@ -1,6 +1,7 @@
 package com.imd0409.projeto01.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.imd0409.projeto01.model.Bovino;
@@ -51,5 +53,29 @@ public class BovinoController {
         return "bovino/listaAnimaisCarteiraVacinacao";
 
     }
+
+    @GetMapping("/showUpdateFormBovino/{id}")
+    public String showUpdateFormBovino(@PathVariable Integer id, Model model){
+
+        Optional<Bovino> bovino = bovinoService.getBovinoById(id);
+        model.addAttribute("bovino", bovino);
+        return "bovino/editarBovino";
+    }
+
+    @RequestMapping("/editarBovino")
+    public String editarBovino(@ModelAttribute("bovino") Bovino bovino, Model model){
+
+        bovinoService.editarBovino(bovino);
+        return "redirect:/bovino/getListaBovino";
+    
+    }
+
+    @RequestMapping("/apagarBovino/{id}")
+    public String apagarBovino(@PathVariable Integer id){
+
+        bovinoService.apagarBovino(id);
+        return "redirect:/bovino/getListaBovino";
+    }
+
     
 }
