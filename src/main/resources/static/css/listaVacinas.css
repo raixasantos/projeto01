@@ -37,3 +37,16 @@
 .botaoApagar {
     background-color: rgb(200, 20, 20);
 }
+
+
+.botaoVoltar {
+    margin-left: 10px;
+    background-color: #93c041;
+    border-radius: 10px;
+    border-color: black;
+    
+}
+
+.bi {
+    color: black;
+}

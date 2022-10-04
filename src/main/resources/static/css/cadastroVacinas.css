@@ -42,3 +42,17 @@
     border-color: #6D3B00;
     padding: 0.2em;
 }
+
+
+.botaoVoltar {
+    margin-left: 10px;
+    background-color: #93c041;
+    border-radius: 10px;
+    border-color: black;
+    
+}
+
+.bi {
+    color: black;
+}
+
