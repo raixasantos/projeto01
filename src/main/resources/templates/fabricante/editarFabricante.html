@@ -20,6 +20,9 @@
         <form class="formulario"action="#" th:action="@{/fabricante/editarFabricante}" th:object="${fabricante}" method="post">
             
             <div class="sub-div">
+                <input type="text" class="campoText" th:field="*{id}" hidden/>
+
+                
                 <div class="id_"><p>Nome</p></div> 
                 <input type="text" class="campoText" th:field="*{nome}"/>
 
