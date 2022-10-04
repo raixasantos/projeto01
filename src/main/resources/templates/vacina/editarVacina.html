@@ -20,6 +20,8 @@
         <form class="formulario"action="#" th:action="@{/vacina/editarVacina}" th:object="${vacina}" method="post">
             
             <div class="sub-div">
+                <input type="text" class="nomeVacina" th:field="*{id}" hidden/>
+
                 <div class="id_"><p>Nome</p></div> 
                 <input type="text" class="nomeVacina" th:field="*{nome}"/>
 

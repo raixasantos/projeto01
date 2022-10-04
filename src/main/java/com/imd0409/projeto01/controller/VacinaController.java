@@ -54,7 +54,7 @@ public class VacinaController {
         return "redirect:/vacina/getListaVacina";
     }
 
-    @RequestMapping("/showUpdateFormVacina/{id}")
+    @GetMapping("/showUpdateFormVacina/{id}")
     public String showUpdateFormVacina(@PathVariable Integer id, Model model){
 
         Optional<Vacina> vacina = vacinaService.getVacinaById(id);
