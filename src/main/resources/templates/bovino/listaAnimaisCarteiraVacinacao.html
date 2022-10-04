@@ -11,17 +11,12 @@
         <title>Animais com Carteira de Vacinação</title>
     </header>
     <body>
-        <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> <button class="botaoVoltar"><a href="../home.html"><span class="voltar"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
-          </svg></span> </a></button>  </header>
+        <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
         <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Animais com Carteira de Vacinação</p>
 
         <div style="margin: 5%; margin-left: 20%; margin-right: 20%;">
-            <a href="showFormBovino" class="link">
-                <button type="submit" class="botao" style=" margin-bottom:10px">
-                    Cadastro de Bovinos
-                </button>
-            </a>
+            
+            <div class="text-center" style="margin-bottom: 5%;"><a href="showFormBovino" class="link"><button type="submit" class="btn btn-success">Cadastrar bovino</button></a></div>
             <table class="table table-bordered table-bordered" >
                 <thead class="text-center" style="background-color:#E0E7CA;">
                 <tr>
@@ -37,7 +32,7 @@
                         <td scope="row" th:text="${bovino.nome}"></td>
                         <td><button class="btn btn-primary" type="submit">Ver</button></td>
                         <td>
-                            <button class="botaoEditar">
+                            <button class="btn btn-primary">
                                 <a th:href="@{/bovino/showUpdateFormBovino/{id}(id=${bovino.id})}"
                                     style="color: black; text-decoration: none;">
                                     Editar
@@ -49,7 +44,7 @@
                                     </span>
                                 </a>
                             </button>
-                            <button class="botaoApagar">
+                            <button class="btn btn-danger">
                                 <a th:href="@{/bovino/apagarBovino/{id}(id=${bovino.id})}"
                                 style="color: black; text-decoration: none;">
                                     Deletar 

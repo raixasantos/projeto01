@@ -17,7 +17,7 @@
       </svg></span> </a></button> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Editar fabricante</p>
 
-    <div class="formularioCadastroVacinas">
+    <div class="formularioCadastroVacinas"  style="margin-bottom: 10%;">
     
         <form class="formulario"action="#" th:action="@{/fabricante/editarFabricante}" th:object="${fabricante}" method="post">
             
@@ -55,13 +55,13 @@
 
                 <div class="id_"><p>Número</p></div>
                 <input type="text" class="campoText" th:field="*{numero}"/>
-            </div>
-            <button type="submit" class="botao">Salvar</button>
-        </form>
-
+                <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success">Cadastrar</button></a></div>
+            </form>
+    
     </div>
 
-    <!-- <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div> -->
+    <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+    
 </div>
 
 </body>

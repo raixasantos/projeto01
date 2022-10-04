@@ -10,23 +10,19 @@
     <!-- JavaScript Bundle with Popper -->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
-    <link th:href="@{/css/home.css}" rel="stylesheet"/>
-
 </head>
 <body>
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Página Inicial</p>
 
-    <div class="guardaBotao">
-        
-        <a href="vacina/getListaVacina" class="link"><button type="submit" class="botao">Vacinas</button></a>
-        
-        <a href="fabricante/getListaFabricante" class="link"><button type="submit" class="botao">Fabricantes de vacinas</button></a>
-
-        <a href="bovino/getListaBovino" class="link"><button type="submit" class="botao">Bovinos</button></a>
-
-        <a href="pessoa/getListaPessoas" class="link"><button type="submit" class="botao">Usuários</button></a>
+    <div class="text-center">        
+        <a href="vacina/getListaVacina" class="link"><button type="submit" class="btn btn-success">Vacinas</button></a>
+        <br><br>
+        <a href="fabricante/getListaFabricante" class="link"><button type="submit" class="btn btn-success">Fabricantes de vacinas</button></a>
+        <br><br>
+        <a href="bovino/getListaBovino" class="link"><button type="submit" class="btn btn-success">Bovinos</button></a>
+        <br><br>
+        <a href="pessoa/getListaPessoas" class="link"><button type="submit" class="btn btn-success">Usuários</button></a>
         
     </div>
 
