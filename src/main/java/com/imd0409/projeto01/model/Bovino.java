@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.imd0409.projeto01.model.enums.Cor;
-import com.imd0409.projeto01.model.enums.Sexo;
 
 @Entity
 @Table(name = "Bovino")
