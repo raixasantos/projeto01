@@ -22,22 +22,22 @@
         <form class="formulario"action="#" th:action="@{/vacina/editarVacina}" th:object="${vacina}" method="post">
             
             <div class="sub-div">
-                <input type="text" class="nomeVacina" th:field="*{id}" hidden/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="nomeVacina" th:field="*{id}" hidden/>
 
                 <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="nomeVacina" th:field="*{nome}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="nomeVacina" th:field="*{nome}"/>
 
                 <div class="id_"><p>Fabricante</p></div> 
-                <select class="fabricanteVacina">
+                <select style="padding: 5px; padding-left: 10px;" class="fabricanteVacina">
                     <option>Selecione um fabricante</option>
                     <option th:each="fabricante: ${fabricantes}" th:value="${fabricante.id}" th:text="${fabricante.nome}">
                 </select>
 
                 <div class="id_"><p>Periodo em dias</p></div> 
-                <input type="number" min="0" class="periodoVacina" th:field="*{periodoEmDias}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="number" min="0" class="periodoVacina" th:field="*{periodoEmDias}"/>
 
                 <div class="id_"><p>Informações Extras</p></div> 
-                <input type="text" class="informacaoVacina" th:field="*{informacoesExtras}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="informacaoVacina" th:field="*{informacoesExtras}"/>
             </div>
             <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;">Editar</button></a></div>
         </form>

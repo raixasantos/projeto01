@@ -17,40 +17,40 @@
       </svg></span> </a></button> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastrar pessoa</p>
 
-    <div class="" style="margin-bottom: 10%;">
+    <div style="margin-bottom: 10%;">
     
         <form class="formulario" action="#" th:action="@{/pessoa/addPessoa}" th:object="${pessoa}" method="post">
             
             <div class="sub-div">
                 <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="campoText" th:field="*{nome}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{nome}"/>
 
                 <div class="id_"><p>Telefone</p></div> 
-                <input type="text" class="campoText" th:field="*{telefone}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{telefone}"/>
 
                 <div class="id_"><p>CPF</p></div> 
-                <input type="text" class="campoText" th:field="*{cpf}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{cpf}"/>
 
                 <div class="id_"><p>Email</p></div> 
-                <input type="text" class="campoText" th:field="*{email}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{email}"/>
 
                 <div class="id_"><p>Cidade</p></div> 
-                <input type="text" class="campoText" th:field="*{cidade}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{cidade}"/>
 
                 <div class="id_"><p>Estado</p></div>
-                <input type="text" class="campoText" th:field="*{estado}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{estado}"/>
 
                 <div class="id_"><p>CEP</p></div>
-                <input type="text" class="campoText" th:field="*{cep}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{cep}"/>
 
                 <div class="id_"><p>Bairro</p></div>
-                <input type="text" class="campoText" th:field="*{bairro}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{bairro}"/>
 
                 <div class="id_"><p>Rua</p></div>
-                <input type="text" class="campoText" th:field="*{rua}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{rua}"/>
 
                 <div class="id_"><p>Número</p></div>
-                <input type="text" class="campoText" th:field="*{numero}"/>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{numero}"/>
             </div>
             <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;">Cadastrar</button></a></div>
         </form>
