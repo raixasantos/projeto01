@@ -8,58 +8,65 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link th:href="@{/css/cadastroPessoas.css}" rel="stylesheet"/>
-    
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
     <title>Cadastro de Pessoas</title>
 </head>
 <body>
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Usuário</p>
 
-    <div class="formularioCadastroUsuario">
-    
-        <form class="formulario">
-            
-            <div class="sub-div">
-                <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="nomeUsuario" name="nomeUsuario"/>
-
-                <div class="id_"><p>Telefone</p></div> 
-                <input type="tel" class="telefoneUsuario" name="telefoneUsuario"/>
-
-                <div class="id_"><p>CPF</p></div> 
-                <input type="text" class="cpfUsuario" name="cpfUsuario"/>
-
-                <div class="id_"><p>Email</p></div> 
-                <input type="email" class="emailUsuario" name="emailUsuario"/>
-
-                <div class="id_"><p>Cidade</p></div> 
-                <input type="text" class="cidadeUsuario" name="cidadeUsuario"/>
-
-                <div class="id_"><p>Estado</p></div> 
-                <input type="text" class="estadoUsuario" name="estadoUsuario"/>
-
-                <div class="id_"><p>Cep</p></div> 
-                <input type="text" class="cepUsuario" name="cepUsuario"/>
-
-                <div class="id_"><p>Bairro</p></div> 
-                <input type="text" class="bairroUsuario" name="bairroUsuario"/>
-
-                <div class="id_"><p>Rua</p></div> 
-                <input type="text" class="cepUsuario" name="cepUsuario"/>
-
-                <div class="id_"><p>Bairro</p></div> 
-                <input type="text" class="ruaUsuario" name="ruaUsuario"/>
-
-                <div class="id_"><p>Número</p></div> 
-                <input type="text" class="numeroUsuario" name="numeroUsuario"/>
-
-            </div>
-            <button type="submit" class="botao">Cadastrar</button>
+    <div class="formularioCadastroUsuario">  
+        <form
+            action="#"
+            th:action="@{/pessoa/addPessoa}"
+            th:object="${pessoa}"
+            method="post"
+        >
+            <p>
+                Nome:
+                <input type="text" th:field="*{nome}" placeholder="Insira seu nome" />
+            </p>
+            <p>
+                Telefone:
+                <input type="text" th:field="*{telefone}" placeholder="Insira seu telefone" />
+            </p>
+            <p>
+                CPF:
+                <input type="text" th:field="*{cpf}" placeholder="Insira seu CPF" />
+            </p>
+            <p>
+                Email:
+                <input type="text" th:field="*{email}" placeholder="Insira seu Email" />
+            </p>
+            <p>
+                Cidade:
+                <input type="text" th:field="*{cidade}" placeholder="Insira sua cidade" />
+            </p>
+            <p>
+                Estado:
+                <input type="text" th:field="*{estado}" placeholder="Insira seu estado" />
+            </p>
+            <p>
+                CEP:
+                <input type="text" th:field="*{cep}" placeholder="Insira seu CEP" />
+            </p>
+            <p>
+                Bairro:
+                <input type="text" th:field="*{bairro}" placeholder="Insira seu bairro" />
+            </p>
+            <p>
+                Rua:
+                <input type="text" th:field="*{rua}" placeholder="Insira seu rua" />
+            </p>
+            <p>
+                Numero:
+                <input type="text" th:field="*{numero}" placeholder="Insira seu numero" />
+            </p>
+            <div class="guardaBotao"><p><input type="submit" value="Cadastrar" /></p></div>
         </form>
-
     </div>
 
-    <footer class="footer">@</footer>
+    <footer class="footer"></footer>
 </div>
 
 </body>
