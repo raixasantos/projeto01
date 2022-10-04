@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JavaScript Bundle with Popper -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link th:href="@{/css/cadastroVacinas.css}" rel="stylesheet"/>
+    
+    <title>Cadastro de Fabricantes</title>
+</head>
+<body>
+    <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
+    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Fabricantes</p>
+
+    <div class="formularioCadastroVacinas">
+    
+        <form class="formulario" action="#" th:action="@{/fabricante/adicionarFabricante}" th:object="${fabricante}" method="post">
+            
+            <div class="sub-div">
+                <div class="id_"><p>Nome</p></div> 
+                <input type="text" class="campoText" th:field="*{nome}"/>
+
+                <div class="id_"><p>DDG</p></div> 
+                <input type="text" class="campoText" th:field="*{ddg}"/>
+
+
+                <div class="id_"><p>CNPJ</p></div> 
+                <input type="text" class="campoText" th:field="*{cnpj}"/>
+
+                <div class="id_"><p>Nacionalidade da indústria</p></div> 
+                <input type="text" class="campoText" th:field="*{nacionalidadeIndustria}"/>
+
+                <div class="id_"><p>Cidade</p></div> 
+                <input type="text" class="campoText" th:field="*{cidade}"/>
+
+                <div class="id_"><p>Estado</p></div>
+                <input type="text" class="campoText" th:field="*{estado}"/>
+
+                <div class="id_"><p>CEP</p></div>
+                <input type="text" class="campoText" th:field="*{cep}"/>
+
+                <div class="id_"><p>Bairro</p></div>
+                <input type="text" class="campoText" th:field="*{bairro}"/>
+
+                <div class="id_"><p>Rua</p></div>
+                <input type="text" class="campoText" th:field="*{rua}"/>
+
+                <div class="id_"><p>Número</p></div>
+                <input type="text" class="campoText" th:field="*{numero}"/>
+            </div>
+            <button type="submit" class="botao">Cadastrar</button>
+        </form>
+
+    </div>
+
+    <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+
+
+</body>
+</html>

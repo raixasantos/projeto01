@@ -25,7 +25,7 @@
     margin-top: 1em;
 }
 
-.nomeVacina, .fabricanteVacina, .periodoVacina, .quantidadeVacina, .informacaoVacina {
+.nomeVacina, .fabricanteVacina, .periodoVacina, .quantidadeVacina, .informacaoVacina, .campoText {
     width: 40em;
     border-radius: 1em;
     border: solid 1.5px #6D3B00;

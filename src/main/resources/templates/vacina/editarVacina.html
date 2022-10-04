@@ -9,15 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link th:href="@{/css/cadastroVacinas.css}" rel="stylesheet"/>
     
-    <title>Cadastro de Vacinas</title>
+    <title>Editar vacina</title>
 </head>
 <body>
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> </header>
-    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Vacinas</p>
+    <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Editar vacina</p>
 
     <div class="formularioCadastroVacinas">
     
-        <form class="formulario"action="#" th:action="@{/vacina/adicionarVacina}" th:object="${vacina}" method="post">
+        <form class="formulario"action="#" th:action="@{/vacina/editarVacina}" th:object="${vacina}" method="post">
             
             <div class="sub-div">
                 <div class="id_"><p>Nome</p></div> 
