@@ -14,11 +14,6 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-<<<<<<< HEAD
-=======
-import com.imd0409.projeto01.model.enums.Cor;
-
->>>>>>> f6211c5f7881f03a1f9570549759106b3b0837f1
 @Entity
 @Table(name = "Bovino")
 public class Bovino {
