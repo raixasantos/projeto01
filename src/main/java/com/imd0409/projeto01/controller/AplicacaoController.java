@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.imd0409.projeto01.model.Aplicacao;
+import com.imd0409.projeto01.model.Vacina;
 import com.imd0409.projeto01.service.AplicacaoService;
+import com.imd0409.projeto01.service.VacinaService;
 
 @Controller
 @RequestMapping("/aplicacao")
@@ -19,9 +21,15 @@ public class AplicacaoController {
     @Qualifier("aplicacaoServiceImpl")
     AplicacaoService aplicacaoService;
 
+    @Autowired
+    @Qualifier("vacinaServiceImpl")
+    VacinaService vacinaService;
+
     @RequestMapping("/showFormAplicacao")
     public String showFormAplicacao(Model model){
         model.addAttribute("aplicacao", new Aplicacao());
+        List<Vacina> vacinas = vacinaService.getListaVacina();
+        model.addAttribute("vacinas", vacinas);
         return "bovino/cadastroAplicacoes";
     }
 
@@ -29,7 +37,7 @@ public class AplicacaoController {
     public String showFormPesssoa(@ModelAttribute("aplicacao") Aplicacao aplicacao,  Model model){
         Aplicacao novaAplicacao = aplicacaoService.salvarAplicacao(aplicacao);
         model.addAttribute("aplicacao", novaAplicacao);
-        return showListaAplicacao(model);
+        return "redirect:/carteira/getCarteira/${}";
     }
 
     @RequestMapping("/getListaAplicacoes")

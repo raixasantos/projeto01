@@ -22,13 +22,14 @@
     <div class="formularioCadastroUsuario">  
         <form
             action="#"
-            th:action="@{/bovino/addAplicacao}"
+            th:action="@{/aplicacao/addAplicacao}"
             th:object="${aplicacao}"
             method="post"
         >
             <p>
                 Vacina:
-                <select th:field="*{vacina}">
+                <select>
+                    <option>Selecione uma vacina</option>
                     <option
                       th:each="vacina: ${vacinas}"
                       th:value="${vacina.id}"
@@ -38,9 +39,15 @@
             </p>
             <p>
                 Dose:
-                <input type="text" th:field="*{dose}" placeholder="Insira a dose" />
+                <input type="number" min="1" th:field="*{dose}" placeholder="Insira a dose" />
             </p>
-            <div class="guardaBotao"><p><input type="submit" value="Cadastrar" /></p></div>
+
+            <p>Data:
+                <input type="date" th:field="*{data}"/>
+            </p>
+            
+
+            <div class="text-center"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;" disabled>Cadastrar</button></a></div>
         </form>
     </div>
 
