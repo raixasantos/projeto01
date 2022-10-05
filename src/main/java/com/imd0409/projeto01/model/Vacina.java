@@ -38,6 +38,12 @@ public class Vacina {
     public Vacina() {
     }
 
+    public Vacina(String nome, int periodoEmDias, String informacoesExtras) {
+        this.nome = nome;
+        this.periodoEmDias = periodoEmDias;
+        this.informacoesExtras = informacoesExtras;
+    }
+
     public Integer getId() {
         return this.id;
     }

@@ -61,6 +61,19 @@ public class Fabricante {
     public Fabricante() {
     }
 
+    public Fabricante(String nome, String ddg, String cnpj, String nacionalidadeIndustria, String cidade, String estado, String cep, String bairro, String rua, String numero) {
+        this.nome = nome;
+        this.ddg = ddg;
+        this.cnpj = cnpj;
+        this.nacionalidadeIndustria = nacionalidadeIndustria;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.rua = rua;
+        this.numero = numero;
+    }
+
     public Integer getId() {
         return this.id;
     }

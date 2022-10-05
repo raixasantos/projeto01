@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Aplicacao")
 public class Aplicacao {
@@ -31,6 +33,7 @@ public class Aplicacao {
     private Integer dose;
 
     @Column(name = "data")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     public Aplicacao() {
