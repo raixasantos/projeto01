@@ -7,69 +7,66 @@
     <!-- JavaScript Bundle with Popper -->
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link th:href="@{/css/cadastroPessoas.css}" rel="stylesheet"/>
-    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+    <link th:href="@{/css/cadastroVacinas.css}" rel="stylesheet"/>
+        <link th:href="@{/css/footer.css}" rel="stylesheet"/>   
     <title>Cadastro de Pessoas</title>
 </head>
 <body>
+    <div id="wrapper">
+        <div id="content">
+
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> <button class="botaoVoltar"><a href="/"><span class="voltar"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
         <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
       </svg></span> </a></button> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Cadastro de Usuário</p>
 
-    <div class="formularioCadastroUsuario">  
+    <div>  
         <form
             action="#"
             th:action="@{/pessoa/addPessoa}"
             th:object="${pessoa}"
             method="post"
+            class="formulario" 
         >
             <input type="text" th:field="*{id}" hidden/>
-            <p>
-                Nome:
-                <input type="text" th:field="*{nome}" placeholder="Insira seu nome" />
-            </p>
-            <p>
-                Telefone:
-                <input type="text" th:field="*{telefone}" placeholder="Insira seu telefone" />
-            </p>
-            <p>
-                CPF:
-                <input type="text" th:field="*{cpf}" placeholder="Insira seu CPF" />
-            </p>
-            <p>
-                Email:
-                <input type="text" th:field="*{email}" placeholder="Insira seu Email" />
-            </p>
-            <p>
-                Cidade:
-                <input type="text" th:field="*{cidade}" placeholder="Insira sua cidade" />
-            </p>
-            <p>
-                Estado:
-                <input type="text" th:field="*{estado}" placeholder="Insira seu estado" />
-            </p>
-            <p>
-                CEP:
-                <input type="text" th:field="*{cep}" placeholder="Insira seu CEP" />
-            </p>
-            <p>
-                Bairro:
-                <input type="text" th:field="*{bairro}" placeholder="Insira seu bairro" />
-            </p>
-            <p>
-                Rua:
-                <input type="text" th:field="*{rua}" placeholder="Insira seu rua" />
-            </p>
-            <p>
-                Numero:
-                <input type="text" th:field="*{numero}" placeholder="Insira seu numero" />
-            </p>
+            <div class="sub-div">
+                <div class="id_"><p>Nome</p></div> 
+                <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{nome}"/>
+
+                <div class="id_"><p>Telefone</p></div> 
+                <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{telefone}"/>
+
+                <div class="id_"><p>CPF</p></div> 
+                <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{cpf}"/>
+
+                <div class="id_"><p>Email</p></div> 
+                <input required style="padding: 5px; padding-left: 10px;" type="email" class="campoText" th:field="*{email}"/>
+
+                <div class="id_"><p>Cidade</p></div> 
+                <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{cidade}"/>
+
+                <div class="id_"><p>Estado</p></div>
+                <input style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{estado}"/>
+
+                <div class="id_"><p>CEP</p></div>
+                <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{cep}"/>
+
+                <div class="id_"><p>Bairro</p></div>
+                <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{bairro}"/>
+
+                <div class="id_"><p>Rua</p></div>
+                <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{rua}"/>
+
+                <div class="id_"><p>Número</p></div>
+                <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{numero}"/>
+            </div>
             <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;">Editar</button></a></div>
         </form>
     </div>
 
-    <footer class="footer"></footer>
+        </div>
+        <div id="footer"></div>      
+    </div>   
 </div>
 
 </body>

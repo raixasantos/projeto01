@@ -8,61 +8,60 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link th:href="@{/css/cadastroVacinas.css}" rel="stylesheet"/>
+    <link th:href="@{/css/footer.css}" rel="stylesheet"/>
     
     <title>Editar fabricante</title>
 </head>
 <body>
+    <div id="wrapper">
+        <div id="content">
+
     <header class="d-flex flex-wrap py-3 " style="background: #83A93A;"> <button class="botaoVoltar"><a href="/"><span class="voltar"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
         <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
       </svg></span> </a></button> </header>
     <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Editar fabricante</p>
-
-    <div class="formularioCadastroVacinas"  style="margin-bottom: 10%;">
     
-        <form class="formulario"action="#" th:action="@{/fabricante/editarFabricante}" th:object="${fabricante}" method="post">
+    <form class="formulario"action="#" th:action="@{/fabricante/editarFabricante}" th:object="${fabricante}" method="post">
+        
+        <div class="sub-div">
+            <input type="text" class="campoText" th:field="*{id}" hidden/>
             
-            <div class="sub-div">
-                <input type="text" class="campoText" th:field="*{id}" hidden/>
+            <div class="id_"><p>Nome</p></div> 
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{nome}"/>
 
-                
-                <div class="id_"><p>Nome</p></div> 
-                <input type="text" class="campoText" th:field="*{nome}"/>
+            <div class="id_"><p>DDG</p></div> 
+            <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{ddg}"/>
 
-                <div class="id_"><p>DDG</p></div> 
-                <input type="text" class="campoText" th:field="*{ddg}"/>
+            <div class="id_"><p>CNPJ</p></div> 
+            <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{cnpj}"/>
 
+            <div class="id_"><p>Nacionalidade da indústria</p></div> 
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{nacionalidadeIndustria}"/>
 
-                <div class="id_"><p>CNPJ</p></div> 
-                <input type="text" class="campoText" th:field="*{cnpj}"/>
+            <div class="id_"><p>Cidade</p></div> 
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{cidade}"/>
 
-                <div class="id_"><p>Nacionalidade da indústria</p></div> 
-                <input type="text" class="campoText" th:field="*{nacionalidadeIndustria}"/>
+            <div class="id_"><p>Estado</p></div>
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{estado}"/>
 
-                <div class="id_"><p>Cidade</p></div> 
-                <input type="text" class="campoText" th:field="*{cidade}"/>
+            <div class="id_"><p>CEP</p></div>
+            <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{cep}"/>
 
-                <div class="id_"><p>Estado</p></div>
-                <input type="text" class="campoText" th:field="*{estado}"/>
+            <div class="id_"><p>Bairro</p></div>
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{bairro}"/>
 
-                <div class="id_"><p>CEP</p></div>
-                <input type="text" class="campoText" th:field="*{cep}"/>
+            <div class="id_"><p>Rua</p></div>
+            <input required style="padding: 5px; padding-left: 10px;" type="text" class="campoText" th:field="*{rua}"/>
 
-                <div class="id_"><p>Bairro</p></div>
-                <input type="text" class="campoText" th:field="*{bairro}"/>
+            <div class="id_"><p>Número</p></div>
+            <input required style="padding: 5px; padding-left: 10px;" type="number" class="campoText" th:field="*{numero}"/>
+        </div>
+        <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;">Editar</button></a></div> 
+    </form>
 
-                <div class="id_"><p>Rua</p></div>
-                <input type="text" class="campoText" th:field="*{rua}"/>
-
-                <div class="id_"><p>Número</p></div>
-                <input type="text" class="campoText" th:field="*{numero}"/>
-                <div class="text-center" style="margin: 5%;"><a><button type="submit" class="btn btn-success" style="background-color:#83A93A;border-color: #6D3B00;">Cadastrar</button></a></div>
-            </form>
-    
-    </div>
-
-    <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
-    
-</div>
+        </div>
+        <div id="footer"></div>      
+    </div> 
 
 </body>
 </html>
