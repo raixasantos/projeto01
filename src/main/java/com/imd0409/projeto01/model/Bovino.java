@@ -9,14 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.imd0409.projeto01.model.enums.Cor;
-import com.imd0409.projeto01.model.enums.Sexo;
 
 @Entity
 @Table(name = "Bovino")
@@ -37,7 +33,7 @@ public class Bovino {
     private String sexo;
 
     @Column(name = "cor")
-    private Cor cor;
+    private String cor;
     
     @Column(name = "peso")
     private Float peso;
@@ -48,21 +44,19 @@ public class Bovino {
     @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
     private Vaca vaca;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idCarteira", referencedColumnName = "id")
+    @OneToOne(mappedBy = "bovino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Carteira carteira;
 
     public Bovino() {
     }
 
-    public Bovino(String nome, LocalDate aniversario, String sexo, Cor cor, Float peso, Boolean chifre, Carteira carteira) {
+    public Bovino(String nome, LocalDate aniversario, String sexo, String cor, Float peso, Boolean chifre) {
         this.nome = nome;
         this.aniversario = aniversario;
         this.sexo = sexo;
         this.cor = cor;
         this.peso = peso;
         this.chifre = chifre;
-        this.carteira = carteira;
     }
 
     public Integer getId() {
@@ -97,11 +91,11 @@ public class Bovino {
         this.sexo = sexo;
     }
 
-    public Cor getCor() {
+    public String getCor() {
         return this.cor;
     }
 
-    public void setCor(Cor cor) {
+    public void setCor(String cor) {
         this.cor = cor;
     }
 

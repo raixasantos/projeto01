@@ -21,9 +21,11 @@ public class CarteiraController {
 
     @RequestMapping("/getCarteira/{id}")
     public String showListaCarteira(@PathVariable Integer id, Model model){
-
-        Optional<Carteira> carteira = carteiraService.getCarteiraById(id);
-        model.addAttribute("carteira",carteira);
+        
+        Optional<Carteira> carteira = carteiraService.getCarteiraByIdBovino(id);
+        model.addAttribute("carteira", carteira);
         return "bovino/carteiraVacinacao";
     }
+
+    
 }

@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.imd0409.projeto01.model.Bovino;
 import com.imd0409.projeto01.model.Carteira;
 
 @Service
 public interface CarteiraService {
     
     public List<Carteira> getListaCarteira();
-    public Carteira salvarCarteira(Carteira carteira);
-    public Optional<Carteira> getCarteiraById(Integer id);
+    public Carteira salvarCarteira(Bovino bovino);
+    public Optional<Carteira> getCarteiraByIdBovino(Integer id);
+    
 }

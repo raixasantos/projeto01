@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"s>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <header>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,43 +17,71 @@
           </svg></span> </a></button>  </header>
         <p class="fs-1 text-center" style="background: #E0E7CA; padding: 20px">Carteira de Vacinação</p>
         
-        <div class="guardaBotao"><a href="showFormAplicacao" class="link"><button type="submit" class="botao" style="background-color:#83A93A;border-color: #6D3B00;">Cadastrar aplicação de vacina</button></a></div>
+        <div class="guardaBotao">
+            <a href="../../aplicacao/showFormAplicacao" class="link">
+                <button type="submit" class="botao" style="background-color:#83A93A;border-color: #6D3B00;">
+                    Cadastrar aplicação de vacina
+                </button>
+            </a>
+        </div>
         <div style="margin: 5%;">
 
-        <div style="margin-left: 10%; margin-right: 10%;background: #E0E7CA;" >
-        <table class="table table-borderless" >
-            <tbody>
-                <tr>
-                    <td>ID: 01</td>
-                    <td>Nome: Chica</td>
-                    <td>Peso: 300kg</td>
-                </tr>
-                <tr>
-                    <td>Sexo: Feminino</td>
-                    <td>Pfizer Dose 1</td>    
-                    <td>Idade: 3 anos</td>            </tr>
-
-            </tbody>
-        </table>
-        </div>
-
-        <div style="margin-left: 40%; margin-right: 40%;">
-            <table class="table table-bordered table-bordered" >
-                <div class="text-center" style="background: #E0E7CA; padding: 1%;"><strong>Carteira de Vacinação</strong></div>
-                <tbody>
+            <div style="margin-left: 20%; margin-right: 20%; background: #E0E7CA;" >
+            <table class="table table-borderless" >
+                <tbody class="text-center">
                     <tr>
-                        <td>Coronavac<br>Dose 1<br>20/02/2022</td>
-                        <!-- <td>Deletar</td> -->
+                        <td>
+                            ID: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.id}"></span>
+                        </td>  
+                        <td>
+                            Peso: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.peso}"></span>
+                            kg
+                        </td> 
+                        <td>
+                            Data de nascimento: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.aniversario}"></span>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Pfizer<br>Dose 3<br>20/02/2022</td>
-                    </tr>
-                    <tr>
-                        <td>Jenssen<br>Dose 1<br>20/02/2022</td>
+                        <td>
+                            Nome: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.nome}"></span>
+                        </td> 
+                        <td>
+                            Sexo: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.sexo}"></span>
+                        </td>   
+                        <td>
+                            Cor: 
+                            <span th:text="${carteira.isEmpty()} ? 'none' : ${carteira.get().bovino.cor}"></span>
+                        </td>           
                     </tr>
                 </tbody>
             </table>
             </div>
-        <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+
+            <div style="margin-left: 20%; margin-right: 20%; margin-bottom: 10%;">
+                <table class="table table-bordered table-bordered" >
+                    <div class="text-center" style="background: #E0E7CA; padding: 1%;"><strong>Carteira de Vacinação</strong></div>
+                    <tbody>
+                        <!-- <td> aplicações por id </td> -->
+                        <tr>
+                            <td>Coronavac<br>Dose 1<br>20/02/2022</td>
+                            <!-- <td>Deletar</td> -->
+                        </tr>
+                        <tr>
+                            <td>Pfizer<br>Dose 3<br>20/02/2022</td>
+                        </tr>
+                        <tr>
+                            <td>Jenssen<br>Dose 1<br>20/02/2022</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="footer fixed-bottom" style="background: #83A93A; height: 10%"> </div>
+        </div>
     </body>
 </html>

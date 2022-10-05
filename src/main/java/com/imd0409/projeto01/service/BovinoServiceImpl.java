@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.imd0409.projeto01.model.Bovino;
@@ -14,10 +15,15 @@ public class BovinoServiceImpl implements BovinoService{
 
     @Autowired
     BovinoRepository bovinoRepository;
+    
+    @Autowired
+    @Qualifier("carteiraServiceImpl")
+    CarteiraService carteiraService;
 
     @Override
     public void salvarBovino(Bovino bovino) {
         bovinoRepository.save(bovino);
+        carteiraService.salvarCarteira(bovino);
     }
 
     @Override

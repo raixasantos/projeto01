@@ -30,7 +30,7 @@
                 <tbody class="text-center">
                     <tr th:each="bovino: ${bovinos}">
                         <td scope="row" th:text="${bovino.nome}"></td>
-                        <td><a th:href="@{/carteira/getCarteira/{id}(id=${bovino.Carteira.getId()})}"
+                        <td><a th:href="@{/carteira/getCarteira/{id}(id=${bovino.id})}"
                             ><button class="btn btn-primary" type="submit">Ver</button></a></td>
                         <td>
                             <button class="btn btn-primary">

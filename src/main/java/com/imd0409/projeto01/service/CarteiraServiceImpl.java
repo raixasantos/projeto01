@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.imd0409.projeto01.model.Bovino;
 import com.imd0409.projeto01.model.Carteira;
 import com.imd0409.projeto01.repository.CarteiraRepository;
 
@@ -21,14 +22,15 @@ public class CarteiraServiceImpl implements CarteiraService{
     }
 
     @Override
-    public Carteira salvarCarteira(Carteira carteira) {
+    public Carteira salvarCarteira(Bovino bovino) {
+        Carteira carteira = new Carteira();
+        carteira.setBovino(bovino);
         return carteiraRepository.save(carteira);
     }
 
     @Override
-    public Optional<Carteira> getCarteiraById(Integer id) {
-        return carteiraRepository.findById(id);
+    public Optional<Carteira> getCarteiraByIdBovino(Integer id) {
+        return carteiraRepository.encontrarPorIdBovino(id);
     }
-
     
 }

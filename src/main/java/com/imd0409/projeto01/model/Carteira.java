@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,8 +19,9 @@ public class Carteira {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @OneToOne(mappedBy = "carteira", fetch = FetchType.LAZY)
+
+    @OneToOne
+    @JoinColumn(name = "idBovino", referencedColumnName = "id")
     private Bovino bovino;
 
     @OneToMany(mappedBy = "carteira", fetch = FetchType.LAZY)
