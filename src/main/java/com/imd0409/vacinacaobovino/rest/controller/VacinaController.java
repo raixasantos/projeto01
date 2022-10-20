@@ -1,4 +1,4 @@
-package com.imd0409.vacinacaobovino.controller;
+package com.imd0409.vacinacaobovino.rest.controller;
 
 import java.util.List;
 import java.util.Optional;
