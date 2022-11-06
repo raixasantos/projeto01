@@ -21,17 +21,23 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoaRepository.findAll();
     }
 
-    @Override
-    public PessoaDTO salvarPessoa(Pessoa pessoa) {// nova inscricao
-        var pessoaSalvo = this.pessoaRepository.save(pessoa);
 
-        return pessoaSalvo.obterPessoaDTO();
-    }
-/*
     @Override
-    public Pessoa salvarPessoa(Pessoa pessoa) {
-        return pessoaRepository.save(pessoa);
-    } */
+    public Pessoa salvarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome(pessoaDTO.getNome());
+        pessoa.setTelefone(pessoaDTO.getTelefone());
+        pessoa.setCpf(pessoaDTO.getCpf());
+        pessoa.setEmail(pessoaDTO.getEmail());
+        pessoa.setCidade(pessoaDTO.getCidade());
+        pessoa.setEstado(pessoaDTO.getEstado());
+        pessoa.setCep(pessoaDTO.getCep());
+        pessoa.setBairro(pessoaDTO.getBairro());
+        pessoa.setRua(pessoaDTO.getRua());
+        pessoa.setNumero(pessoaDTO.getNumero());
+        pessoaRepository.save(pessoa);
+        return pessoa;
+    }
 
     @Override
     public void apagarPessoa(Integer id) {

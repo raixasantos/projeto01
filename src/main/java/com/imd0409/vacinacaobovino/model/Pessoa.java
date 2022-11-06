@@ -171,8 +171,5 @@ public class Pessoa {
                 "}";
     }
 
-    public PessoaDTO obterPessoaDTO() {
-        return new PessoaDTO(this.nome);
-    }
 
 }

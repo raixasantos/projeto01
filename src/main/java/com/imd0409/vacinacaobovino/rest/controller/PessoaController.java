@@ -39,8 +39,9 @@ public class PessoaController {
         return 1000;
     }
 
-    @PostMapping
-    public ResponseEntity<PessoaDTO> salvarPessoa(final @RequestBody Pessoa pessoa) {//salvar dados do usuario
-        return new ResponseEntity<PessoaDTO>(this.pessoaService.salvarPessoa(pessoa), HttpStatus.CREATED);
+    @PostMapping("/adicionarPessoa")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {//salvar dados do usuario
+        return pessoaService.salvarPessoa(pessoa);
     }
 }

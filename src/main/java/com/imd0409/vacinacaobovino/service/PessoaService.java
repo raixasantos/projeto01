@@ -12,9 +12,7 @@ import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 public interface PessoaService {
     public List<Pessoa> getListaPessoa();
 
-    public PessoaDTO salvarPessoa(Pessoa pessoa);//nova inscrição
-
-    //public Pessoa salvarPessoa(Pessoa pessoa);
+    public Pessoa salvarPessoa(PessoaDTO pessoaDTO);// nova inscrição
 
     public void apagarPessoa(Integer id);
 
