@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.repository.FabricanteRepository;
+import com.imd0409.vacinacaobovino.rest.dto.FabricanteDTO;
 
 @Component
 public class FabricanteServiceImpl implements FabricanteService {
@@ -20,8 +21,22 @@ public class FabricanteServiceImpl implements FabricanteService {
         return fabricanteRepository.findAll();
     }
     @Override
-    public void salvarFabricante(Fabricante fabricante) {
+    public Fabricante salvarFabricante(FabricanteDTO dto) {
+        Fabricante fabricante = new Fabricante();
+        
+        fabricante.setNome(dto.getNome());
+        fabricante.setDdg(dto.getDdg());
+        fabricante.setCnpj(dto.getCnpj());
+        fabricante.setNacionalidadeIndustria(dto.getNacionalidadeIndustria());
+        fabricante.setCidade(dto.getCidade());
+        fabricante.setEstado(dto.getEstado());
+        fabricante.setCep(dto.getCep());
+        fabricante.setBairro(dto.getBairro());
+        fabricante.setRua(dto.getRua());
+        fabricante.setNumero(dto.getNumero());
+
         fabricanteRepository.save(fabricante);
+        return fabricante;
     }
     @Override
     public void apagarFabricante(Integer id) {
