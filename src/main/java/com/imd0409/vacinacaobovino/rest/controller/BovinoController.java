@@ -5,18 +5,27 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.imd0409.vacinacaobovino.model.Bovino;
 import com.imd0409.vacinacaobovino.service.BovinoService;
 
-@Controller
+import com.imd0409.vacinacaobovino.rest.dto.BovinoDTO;
+
+//@Controller
 @RequestMapping("/bovino")
+@RestController
 public class BovinoController {
      
     @Autowired
@@ -37,12 +46,10 @@ public class BovinoController {
         return "bovino/cadastroBovinos";
     }
 
-    @RequestMapping("/adicionarBovino")
-    public String showFormBovino(@ModelAttribute("bovino") Bovino bovino,  Model model){
-
-        bovinoService.salvarBovino(bovino);
-        model.addAttribute("bovino", bovino);
-        return "redirect:/bovino/getListaBovino";
+    @PostMapping("/adicionarBovino")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Bovino showFormBovino(final @RequestBody BovinoDTO bovino){
+        return bovinoService.salvarBovino(bovino);
     }
 
     @GetMapping("/getListaBovino")

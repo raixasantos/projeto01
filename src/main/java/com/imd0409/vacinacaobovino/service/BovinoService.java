@@ -6,11 +6,12 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.imd0409.vacinacaobovino.model.Bovino;
+import com.imd0409.vacinacaobovino.rest.dto.BovinoDTO;
 
 @Service
 public interface BovinoService {
 
-    public void salvarBovino(Bovino bovino);
+    public Bovino salvarBovino(BovinoDTO bovinoDTO);
     public List<Bovino> getListaBovino();
     public void apagarBovino(Integer id);
     public void editarBovino(Bovino bovino);
