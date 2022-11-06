@@ -5,12 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
+
 import javax.persistence.Column;
 
 @Entity
 @Table(name = "Pessoa")
 public class Pessoa {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,7 +30,7 @@ public class Pessoa {
     @Column(name = "email", length = 100)
     private String email;
 
-    //Endereço
+    // Endereço
     @Column(name = "cidade", length = 50)
     private String cidade;
 
@@ -49,7 +52,8 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, String cpf, String email, String cidade, String estado, String cep, String bairro, String rua, String numero) {
+    public Pessoa(String nome, String telefone, String cpf, String email, String cidade, String estado, String cep,
+            String bairro, String rua, String numero) {
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
@@ -153,17 +157,22 @@ public class Pessoa {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", nome='" + getNome() + "'" +
-            ", telefone='" + getTelefone() + "'" +
-            ", cpf='" + getCpf() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", cidade='" + getCidade() + "'" +
-            ", estado='" + getEstado() + "'" +
-            ", cep='" + getCep() + "'" +
-            ", bairro='" + getBairro() + "'" +
-            ", rua='" + getRua() + "'" +
-            ", numero='" + getNumero() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", nome='" + getNome() + "'" +
+                ", telefone='" + getTelefone() + "'" +
+                ", cpf='" + getCpf() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", cidade='" + getCidade() + "'" +
+                ", estado='" + getEstado() + "'" +
+                ", cep='" + getCep() + "'" +
+                ", bairro='" + getBairro() + "'" +
+                ", rua='" + getRua() + "'" +
+                ", numero='" + getNumero() + "'" +
+                "}";
     }
+
+    public PessoaDTO obterPessoaDTO() {
+        return new PessoaDTO(this.nome);
+    }
+
 }
