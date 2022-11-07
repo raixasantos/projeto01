@@ -5,19 +5,30 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.model.Vacina;
+import com.imd0409.vacinacaobovino.repository.VacinaRepository;
+import com.imd0409.vacinacaobovino.rest.dto.FabricanteDTO;
+import com.imd0409.vacinacaobovino.rest.dto.InformacoesVacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
 import com.imd0409.vacinacaobovino.service.FabricanteService;
 import com.imd0409.vacinacaobovino.service.VacinaService;
 
-@Controller
+@RestController
 @RequestMapping("/vacina")
 public class VacinaController {
     
@@ -25,58 +36,47 @@ public class VacinaController {
     @Qualifier("vacinaServiceImpl")
     VacinaService vacinaService;
 
+
     @Autowired
-    @Qualifier("fabricanteServiceImpl")
-    FabricanteService fabricanteService;
+    @Qualifier("vacinaRepository")
+    VacinaRepository vacinaRepository;
 
-    @GetMapping("/getListaVacina")
-    public String showListaVacina(Model model){
 
-        List<Vacina> vacinas = vacinaService.getListaVacina();
-        model.addAttribute("vacinas", vacinas);
-        return "vacina/listaVacinas";
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public int save( @RequestBody VacinaDTO dto ){
+        Vacina vacina = vacinaService.salvarVacina(dto);
+        return vacina.getId();
     }
 
-    @RequestMapping("/showFormVacina")
-    public String showFormVacina(Model model){
-
-        model.addAttribute("vacina", new Vacina());
-        List<Fabricante> fabricantes = fabricanteService.getListaFabricante();
-        model.addAttribute("fabricantes", fabricantes);
-        return "vacina/cadastroVacinas";
+    @GetMapping("{id}")
+    public InformacoesVacinaDTO getVacinaById( @PathVariable Integer id ){
+        return (InformacoesVacinaDTO) vacinaService
+                .getVacinaById(id)
+                .map( p -> converter(p) )
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Vacina não encontrado."));
     }
 
-    @RequestMapping("/adicionarVacina")
-    public String showFormVacina(@ModelAttribute("vacina") Vacina vacina, Model model){
-
-        vacinaService.salvarVacina(vacina);
-        return "redirect:/vacina/getListaVacina";
+    private Object converter(Vacina p) {
+        return InformacoesVacinaDTO
+                .builder()
+                .id(p.getId())
+                .nome(p.getNome())
+                .informacoesExtras(p.getInformacoesExtras())
+                .build();
     }
 
-    @GetMapping("/showUpdateFormVacina/{id}")
-    public String showUpdateFormVacina(@PathVariable Integer id, Model model){
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete( @PathVariable Integer id ){
+        vacinaRepository.findById(id)
+                .map( vacina -> {
+                    vacinaRepository.delete(vacina );
+                    return vacina;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Vacina não encontrado") );
 
-        Optional<Vacina> vacina = vacinaService.getVacinaById(id);
-        model.addAttribute("vacina", vacina);
-        List<Fabricante> fabricantes = fabricanteService.getListaFabricante();
-        model.addAttribute("fabricantes", fabricantes);
-        return "vacina/editarVacina";
     }
-
-    @RequestMapping("/editarVacina")
-    public String editarVacina(@ModelAttribute("vacina") Vacina vacina, Model model){
-
-        vacinaService.editarVacina(vacina);
-        return "redirect:/vacina/getListaVacina";
-    
-    }
-
-    @RequestMapping("/apagarVacina/{id}")
-    public String apagarVacina(@PathVariable Integer id){
-
-        vacinaService.apagarVacina(id);
-        return "redirect:/vacina/getListaVacina";
-    }
-
 }
