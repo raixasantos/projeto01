@@ -40,6 +40,11 @@ public class PessoaController {
         return 1000;
     }
 
+    @GetMapping("/obterListaPessoa")
+    public List<Pessoa> showListaPessoa(){
+        return pessoaService.getListaPessoa();
+    }
+
     @PostMapping("/adicionarPessoa")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {// salvar dados do usuario
