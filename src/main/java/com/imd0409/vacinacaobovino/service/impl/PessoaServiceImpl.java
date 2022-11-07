@@ -3,14 +3,24 @@ package com.imd0409.vacinacaobovino.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.cache.NullUserCache;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 
 import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
 import com.imd0409.vacinacaobovino.service.PessoaService;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
+import com.imd0409.vacinacaobovino.security.*;
 
 @Component
 public class PessoaServiceImpl implements PessoaService {
@@ -60,5 +70,36 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public Optional<Pessoa> getPessoaById(Integer id) {
         return pessoaRepository.findById(id);
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Pessoa pessoa = pessoaRepository.findByLogin(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado na base de dados."));
+
+        String[] roles = pessoa.isAdmin() ? new String[] { "ADMIN", "USER" } : new String[] { "USER" };
+
+        return User
+                .builder()
+                .username(pessoa.getLogin())
+                .password(pessoa.getSenha())
+                .roles(roles)
+                .build();
+
+        /*
+         * Usuário em memória
+         * if(!username.equals("cicrano")){
+         * throw new UsernameNotFoundException("Usuário não encontrado na base.");
+         * }
+         * 
+         * return User
+         * .builder()
+         * .username("cicrano")
+         * .password(passwordEncoder.encode("123"))
+         * .roles("USER")
+         * .build();
+         */
     }
 }

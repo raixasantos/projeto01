@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
+import com.imd0409.vacinacaobovino.security.*;
 
 @Service
 public interface PessoaService {
@@ -21,4 +22,6 @@ public interface PessoaService {
     public void apagarPessoa(Integer id);
 
     public Optional<Pessoa> getPessoaById(Integer id);
+
+    
 }

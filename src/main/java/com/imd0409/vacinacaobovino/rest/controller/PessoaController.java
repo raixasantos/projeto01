@@ -102,7 +102,6 @@ public class PessoaController {
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Pessoa não encontrada") );
-
     }
 
 }

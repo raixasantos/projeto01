@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 
@@ -49,6 +50,18 @@ public class Pessoa {
     @Column(name = "numero", length = 50)
     private String numero;
 
+    @Column
+    @NotEmpty(message = "{campo.login.obrigatorio}")
+    private String login;
+
+    @Column
+    @NotEmpty(message = "{campo.senha.obrigatorio}")
+    private String senha;
+    
+    @Column
+    private String admin;
+
+    
     public Pessoa() {
     }
 
@@ -153,6 +166,23 @@ public class Pessoa {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    public String getLogin() {
+        return this.nome;
+    }
+
+    public void setLogin(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getSenha() {
+        return this.nome;
+    }
+
+    public void setSenha(String nome) {
+        this.nome = nome;
+    }
+
 
     @Override
     public String toString() {
