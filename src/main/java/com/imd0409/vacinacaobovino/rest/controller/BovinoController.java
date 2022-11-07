@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,7 +72,7 @@ public class BovinoController {
                 .getBovinoById(id)
                 .map( p -> converter(p) )
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Bovino não encontrado."));
     }
 
     private BovinoDTO converter(Bovino bovino){
@@ -101,6 +102,14 @@ public class BovinoController {
         bovinoService.editarBovino(bovino);
         return "redirect:/bovino/getListaBovino";
     
+    }
+
+    @PatchMapping("/editarPeso/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePeso(@PathVariable Integer id, @RequestBody BovinoDTO bovinoDTO) {
+        System.out.println("método patch");
+        Float novoPeso = bovinoDTO.getPeso();
+        bovinoService.atualizarPeso(id, novoPeso);
     }
 
     @DeleteMapping("{id}")
