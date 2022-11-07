@@ -7,18 +7,12 @@ import com.imd0409.vacinacaobovino.model.Fabricante;
 
 import lombok.*;
 
-/*
-{
-    "nome" : "Pfizer",
-    "periodoEmDias" : 10,
-    "informacoesExtras" : "..."
-}
- */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VacinaDTO {
+@Builder 
+public class InformacoesVacinaDTO {
+    private Integer id;
     private String nome;
     private List<Fabricante> fabricantes;
     private int periodoEmDias;
