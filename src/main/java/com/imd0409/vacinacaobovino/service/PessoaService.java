@@ -16,6 +16,8 @@ public interface PessoaService {
 
     public void atualizaNome(Integer id, String novoNome); // novo met
 
+    public void atualizaTelefone(Integer id, String novoTelefone); // editar telefone
+
     public void apagarPessoa(Integer id);
 
     public Optional<Pessoa> getPessoaById(Integer id);

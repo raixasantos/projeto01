@@ -49,9 +49,16 @@ public class PessoaController {
     @PatchMapping("/editarNome/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateNome(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
-        System.out.println("método patch");
         String novoNome = pessoaDTO.getNome();
         pessoaService.atualizaNome(id, novoNome);
+    }
+
+    @PatchMapping("/editarTelefone/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateTelefone(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
+        System.out.println("método patch updateTelefone");
+        String novoTelefone = pessoaDTO.getTelefone();
+        pessoaService.atualizaTelefone(id, novoTelefone);
     }
 
 }

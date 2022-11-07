@@ -45,7 +45,11 @@ public class PessoaServiceImpl implements PessoaService {
             return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de cliente inválido."));
     }
 
-
+    @Override
+    public void atualizaTelefone(Integer id, String novoTelefone) {
+        pessoaRepository.findById(id).map( pessoa -> {pessoa.setTelefone(novoTelefone);
+            return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de telefone do cliente inválido."));
+    }
 
     @Override
     public void apagarPessoa(Integer id) {
