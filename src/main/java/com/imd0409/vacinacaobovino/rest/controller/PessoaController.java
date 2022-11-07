@@ -47,9 +47,34 @@ public class PessoaController {
         return pessoaService.getListaPessoa();
     }
 
+    @GetMapping("/obterPessoaId/{id}")
+    public PessoaDTO getById( @PathVariable Integer id ){
+        return pessoaService
+                .getPessoaById(id)
+                .map( p -> converter(p) )
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+    }
+
+    private PessoaDTO converter(Pessoa pessoa){
+        return PessoaDTO
+                .builder()
+                .nome(pessoa.getNome())
+                .telefone(pessoa.getTelefone())
+                .cpf(pessoa.getCpf())
+                .email(pessoa.getEmail())
+                .cidade(pessoa.getCidade())
+                .estado(pessoa.getEstado())
+                .cep(pessoa.getCep())
+                .bairro(pessoa.getBairro())
+                .rua(pessoa.getRua())
+                .numero(pessoa.getNumero())
+                .build();
+    }
+
     @PostMapping("/adicionarPessoa")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {// salvar dados do usuario
+    public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {
         return pessoaService.salvarPessoa(pessoa);
     }
 
