@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
-import com.imd0409.vacinacaobovino.rest.dto.EditarPessoaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 import com.imd0409.vacinacaobovino.service.PessoaService;
 
@@ -41,26 +40,30 @@ public class PessoaController {
         return 1000;
     }
 
+    @GetMapping("/obterListaPessoa")
+    public List<Pessoa> showListaPessoa(){
+        return pessoaService.getListaPessoa();
+    }
+
     @PostMapping("/adicionarPessoa")
     @ResponseStatus(HttpStatus.CREATED)
     public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {// salvar dados do usuario
         return pessoaService.salvarPessoa(pessoa);
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/editarNome/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateNome(@PathVariable Integer id, @RequestBody EditarPessoaDTO pessoa) {
-        String novoNome = pessoa.getNome();
-        pessoaService.atualizaNome(pessoa, novoNome);
+    public void updateNome(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
+        String novoNome = pessoaDTO.getNome();
+        pessoaService.atualizaNome(id, novoNome);
     }
 
-    /*
-     * @PatchMapping("{id}")
-     * 
-     * @ResponseStatus(HttpStatus.NO_CONTENT)
-     * public void editarPessoa(final @RequestBody PessoaDTO pessoa) {
-     * pessoaService.editarPessoa(pessoa);
-     * }
-     */
+    @PatchMapping("/editarTelefone/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateTelefone(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
+        System.out.println("método patch updateTelefone");
+        String novoTelefone = pessoaDTO.getTelefone();
+        pessoaService.atualizaTelefone(id, novoTelefone);
+    }
 
 }

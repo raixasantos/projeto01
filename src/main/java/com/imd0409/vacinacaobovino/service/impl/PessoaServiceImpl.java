@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
 import com.imd0409.vacinacaobovino.service.PessoaService;
-import com.imd0409.vacinacaobovino.rest.dto.EditarPessoaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 
 @Component
@@ -39,18 +39,16 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoa;
     }
 
-    clientesRepository
-            .findById(id)
-            .map( cliente -> {
-                cliente.setNome(nome);
-                return clientesRepository.save(cliente);
-            }).orElseThrow(() -> new RegraNegocioException("Código de cliente inválido."));
+    @Override
+    public void atualizaNome(Integer id, String novoNome) {
+        pessoaRepository.findById(id).map( pessoa -> {pessoa.setNome(novoNome);
+            return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de cliente inválido."));
     }
 
     @Override
-    public void atualizaNome(EditarPessoaDTO pessoaDTO, String novoNome) {
-        Pessoa pessoa = new Pessoa();
-        pessoaRepository.findBy(pessoaDTO.getId()).map()
+    public void atualizaTelefone(Integer id, String novoTelefone) {
+        pessoaRepository.findById(id).map( pessoa -> {pessoa.setTelefone(novoTelefone);
+            return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de telefone do cliente inválido."));
     }
 
     @Override
@@ -58,21 +56,6 @@ public class PessoaServiceImpl implements PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    @Override
-    public void editarPessoa(PessoaDTO pessoaDTO) {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome(pessoaDTO.getNome());
-        pessoa.setTelefone(pessoaDTO.getTelefone());
-        pessoa.setCpf(pessoaDTO.getCpf());
-        pessoa.setEmail(pessoaDTO.getEmail());
-        pessoa.setCidade(pessoaDTO.getCidade());
-        pessoa.setEstado(pessoaDTO.getEstado());
-        pessoa.setCep(pessoaDTO.getCep());
-        pessoa.setBairro(pessoaDTO.getBairro());
-        pessoa.setRua(pessoaDTO.getRua());
-        pessoa.setNumero(pessoaDTO.getNumero());
-        pessoaRepository.save(pessoa);
-    }
 
     @Override
     public Optional<Pessoa> getPessoaById(Integer id) {
