@@ -23,7 +23,7 @@ public class FabricanteServiceImpl implements FabricanteService {
     @Override
     public Fabricante salvarFabricante(FabricanteDTO dto) {
         Fabricante fabricante = new Fabricante();
-        
+     
         fabricante.setNome(dto.getNome());
         fabricante.setDdg(dto.getDdg());
         fabricante.setCnpj(dto.getCnpj());
@@ -41,15 +41,28 @@ public class FabricanteServiceImpl implements FabricanteService {
     @Override
     public void apagarFabricante(Integer id) {
         fabricanteRepository.deleteById(id);
-        
-    }
-    @Override
-    public void editarFabricante(Fabricante fabricante) {
-        fabricanteRepository.save(fabricante);
-        
     }
     @Override
     public Optional<Fabricante> getFabricanteById(Integer id) {
         return fabricanteRepository.findById(id);
+    }
+
+    @Override
+    public Fabricante editarFabricante(FabricanteDTO dto) {
+        Fabricante fabricante = new Fabricante();
+     
+        fabricante.setNome(dto.getNome());
+        fabricante.setDdg(dto.getDdg());
+        fabricante.setCnpj(dto.getCnpj());
+        fabricante.setNacionalidadeIndustria(dto.getNacionalidadeIndustria());
+        fabricante.setCidade(dto.getCidade());
+        fabricante.setEstado(dto.getEstado());
+        fabricante.setCep(dto.getCep());
+        fabricante.setBairro(dto.getBairro());
+        fabricante.setRua(dto.getRua());
+        fabricante.setNumero(dto.getNumero());
+                
+        fabricanteRepository.save(fabricante);
+        return fabricante;
     }
 }

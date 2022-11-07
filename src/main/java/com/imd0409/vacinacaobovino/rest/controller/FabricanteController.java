@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class FabricanteController {
     @Autowired
     FabricanteRepository fabricanteRepository;
 
-     @GetMapping("{id}")
+    @GetMapping("{id}")
     public InformacoesFabricanteDTO getFabricanteById( @PathVariable Integer id ){
         return fabricanteService
                 .getFabricanteById(id)
@@ -75,5 +76,12 @@ public class FabricanteController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Fabricante não encontrado") );
 
+    }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateFabricante(@PathVariable Integer id ,
+                             @RequestBody FabricanteDTO dto){
+        fabricanteService.editarFabricante(dto);
     }
 }
