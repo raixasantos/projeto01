@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
+import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
 
 @Component
 public class VacinaServiceImpl implements VacinaService {
@@ -16,8 +17,15 @@ public class VacinaServiceImpl implements VacinaService {
     VacinaRepository vacinaRepository;
 
     @Override
-    public void salvarVacina(Vacina vacina) {
+    public Vacina salvarVacina(VacinaDTO dto) {
+        Vacina vacina = new Vacina();
+        
+        vacina.setNome(dto.getNome());
+        vacina.setPeriodoEmDias(vacina.getPeriodoEmDias());
+        vacina.setInformacoesExtras(vacina.getInformacoesExtras());
+
         vacinaRepository.save(vacina);
+        return vacina;
     }
 
     @Override
