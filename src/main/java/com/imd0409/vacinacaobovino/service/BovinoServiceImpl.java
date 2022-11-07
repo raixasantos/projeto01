@@ -36,8 +36,8 @@ public class BovinoServiceImpl implements BovinoService{
         bovino.setPeso(bovinoDTO.getPeso());
         bovino.setChifre(bovinoDTO.getChifre());
         bovinoRepository.save(bovino);
+        
         return bovino;
-        //carteiraService.salvarCarteira(bovino);
     }
 
     @Override

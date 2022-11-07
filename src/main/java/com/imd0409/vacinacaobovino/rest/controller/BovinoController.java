@@ -1,5 +1,6 @@
 package com.imd0409.vacinacaobovino.rest.controller;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,16 +18,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.imd0409.vacinacaobovino.repository.BovinoRepository;
 
 import com.imd0409.vacinacaobovino.model.Bovino;
 import com.imd0409.vacinacaobovino.service.BovinoService;
 
 import com.imd0409.vacinacaobovino.rest.dto.BovinoDTO;
 
-//@Controller
 @RequestMapping("/bovino")
 @RestController
 public class BovinoController {
+
+    @Autowired
+    private BovinoRepository bovinos;
      
     @Autowired
     @Qualifier("bovinoServiceImpl")
@@ -53,13 +60,32 @@ public class BovinoController {
     }
 
     @GetMapping("/getListaBovino")
-    public String showListaBovino(Model model){
-
-        List<Bovino> bovinos = bovinoService.getListaBovino();
-        model.addAttribute("bovinos", bovinos);
-        return "bovino/listaAnimaisCarteiraVacinacao";
-
+    public List<Bovino> showListaBovino(){
+        return bovinoService.getListaBovino();
     }
+
+
+    @GetMapping("{id}")
+    public BovinoDTO getById( @PathVariable Integer id ){
+        return bovinoService
+                .getBovinoById(id)
+                .map( p -> converter(p) )
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+    }
+
+    private BovinoDTO converter(Bovino bovino){
+        return BovinoDTO
+                .builder()
+                .nome(bovino.getNome())
+                .aniversario(bovino.getAniversario())
+                .sexo(bovino.getSexo())
+                .cor(bovino.getCor())
+                .peso(bovino.getPeso())
+                .chifre(bovino.getChifre())
+                .build();
+    }
+
 
     @GetMapping("/showUpdateFormBovino/{id}")
     public String showUpdateFormBovino(@PathVariable Integer id, Model model){
@@ -77,11 +103,17 @@ public class BovinoController {
     
     }
 
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping("/apagarBovino/{id}")
-    public String apagarBovino(@PathVariable Integer id){
-
-        bovinoService.apagarBovino(id);
-        return "redirect:/bovino/getListaBovino";
+    public void apagarBovino(@PathVariable Integer id){
+        bovinos.findById(id)
+                .map( bovino -> {
+                    bovinos.delete(bovino);
+                    return bovino;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Bovino não encontrado") );
     }
 
     
