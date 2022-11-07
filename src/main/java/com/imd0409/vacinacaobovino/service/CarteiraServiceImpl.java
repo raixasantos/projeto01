@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Bovino;
 import com.imd0409.vacinacaobovino.model.Carteira;
 import com.imd0409.vacinacaobovino.repository.BovinoRepository;
@@ -31,17 +30,15 @@ public class CarteiraServiceImpl implements CarteiraService {
     @Override
     public Integer salvarCarteira(NovaCarteiraDTO carteira) {
         Integer idBovinoRecebido = carteira.getIdBovino();
-        // mudar modo de envio de erro
         Bovino bovino = bovinoRepository
                 .findById(idBovinoRecebido)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Bovino não encontrado."));
+                .orElseThrow(() -> new RegraNegocioException("Bovino não encontrado."));
 
         Boolean existeCarteiraComIdRecebido = carteiraRepository
                 .encontrarPorIdBovino(idBovinoRecebido)
                 .isPresent();
         if (existeCarteiraComIdRecebido) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_ACCEPTABLE,
+            throw new RegraNegocioException(
                     "Carteira com o id do bovino " + idBovinoRecebido + " já existe!"
             );
         }
@@ -57,15 +54,12 @@ public class CarteiraServiceImpl implements CarteiraService {
         Optional<Carteira> carteira = carteiraRepository.encontrarPorIdBovino(idBovino);
         Boolean existeCarteiraComIdRecebido = carteira.isPresent();
         if (!existeCarteiraComIdRecebido) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    "Carteira do bovino de id " + idBovino + " não encontrada!"
+            throw new RegraNegocioException(
+                "Carteira do bovino de id " + idBovino + " não encontrada!"
             );
         }
 
-        // converter: bovino e aplicaçoes     
-
-        return carteira.get(); // retornar 
+        return carteira.get();
     }
 
 }
