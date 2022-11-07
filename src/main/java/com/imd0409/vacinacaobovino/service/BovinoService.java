@@ -16,5 +16,6 @@ public interface BovinoService {
     public void apagarBovino(Integer id);
     public void editarBovino(Bovino bovino);
     public void atualizarPeso(Integer id, Float novoNome);
+    public void atualizarChifre(Integer id, Boolean novoChifre);
     public Optional<Bovino> getBovinoById(Integer id);
 }

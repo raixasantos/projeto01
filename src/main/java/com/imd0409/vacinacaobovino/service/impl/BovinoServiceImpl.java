@@ -66,6 +66,12 @@ public class BovinoServiceImpl implements BovinoService{
     }
 
     @Override
+    public void atualizarChifre(Integer id, Boolean novoChifre) {
+        bovinoRepository.findById(id).map( bovino -> {bovino.setChifre(novoChifre);
+            return bovinoRepository.save(bovino);}).orElseThrow(() -> new RegraNegocioException("Código do bovino inválido."));
+    }
+
+    @Override
     public Optional<Bovino> getBovinoById(Integer id) {
         return bovinoRepository.findById(id);
     }

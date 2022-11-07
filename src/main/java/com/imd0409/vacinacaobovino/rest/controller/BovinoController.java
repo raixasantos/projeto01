@@ -112,6 +112,14 @@ public class BovinoController {
         bovinoService.atualizarPeso(id, novoPeso);
     }
 
+    @PatchMapping("/editarChifre/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateChifre(@PathVariable Integer id, @RequestBody BovinoDTO bovinoDTO) {
+        System.out.println("método patch");
+        Boolean novoChifre = bovinoDTO.getChifre();
+        bovinoService.atualizarChifre(id, novoChifre);
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping("/apagarBovino/{id}")
