@@ -21,7 +21,6 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoaRepository.findAll();
     }
 
-
     @Override
     public Pessoa salvarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
         Pessoa pessoa = new Pessoa();
@@ -45,9 +44,19 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public void editarPessoa(Pessoa pessoa) {
+    public void editarPessoa(PessoaDTO pessoaDTO) {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome(pessoaDTO.getNome());
+        pessoa.setTelefone(pessoaDTO.getTelefone());
+        pessoa.setCpf(pessoaDTO.getCpf());
+        pessoa.setEmail(pessoaDTO.getEmail());
+        pessoa.setCidade(pessoaDTO.getCidade());
+        pessoa.setEstado(pessoaDTO.getEstado());
+        pessoa.setCep(pessoaDTO.getCep());
+        pessoa.setBairro(pessoaDTO.getBairro());
+        pessoa.setRua(pessoaDTO.getRua());
+        pessoa.setNumero(pessoaDTO.getNumero());
         pessoaRepository.save(pessoa);
-
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface PessoaService {
 
     public void apagarPessoa(Integer id);
 
-    public void editarPessoa(Pessoa pessoa);
+    public void editarPessoa(PessoaDTO pessoaDTO); //nova inscricao
 
     public Optional<Pessoa> getPessoaById(Integer id);
 }

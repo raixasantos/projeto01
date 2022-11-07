@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.repository.FabricanteRepository;
 import com.imd0409.vacinacaobovino.rest.dto.FabricanteDTO;
-import com.imd0409.vacinacaobovino.rest.dto.InformacoesFabricanteDTO;
+//import com.imd0409.vacinacaobovino.rest.dto.InformacoesFabricanteDTO;
 import com.imd0409.vacinacaobovino.service.FabricanteService;
 
 
@@ -31,7 +31,7 @@ public class FabricanteController {
     @Autowired
     FabricanteRepository fabricanteRepository;
 
-    @GetMapping("{id}")
+   /*  @GetMapping("{id}")
     public InformacoesFabricanteDTO getFabricanteById( @PathVariable Integer id ){
         return fabricanteService
                 .getFabricanteById(id)
@@ -55,7 +55,7 @@ public class FabricanteController {
                 .rua(fabricante.getRua())
                 .numero(fabricante.getNumero())
                 .build();
-    }
+    }*/
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
