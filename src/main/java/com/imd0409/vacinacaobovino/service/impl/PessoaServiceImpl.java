@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
 import com.imd0409.vacinacaobovino.service.PessoaService;
+import com.imd0409.vacinacaobovino.rest.dto.EditarPessoaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 
 @Component
@@ -36,6 +37,20 @@ public class PessoaServiceImpl implements PessoaService {
         pessoa.setNumero(pessoaDTO.getNumero());
         pessoaRepository.save(pessoa);
         return pessoa;
+    }
+
+    clientesRepository
+            .findById(id)
+            .map( cliente -> {
+                cliente.setNome(nome);
+                return clientesRepository.save(cliente);
+            }).orElseThrow(() -> new RegraNegocioException("Código de cliente inválido."));
+    }
+
+    @Override
+    public void atualizaNome(EditarPessoaDTO pessoaDTO, String novoNome) {
+        Pessoa pessoa = new Pessoa();
+        pessoaRepository.findBy(pessoaDTO.getId()).map()
     }
 
     @Override
