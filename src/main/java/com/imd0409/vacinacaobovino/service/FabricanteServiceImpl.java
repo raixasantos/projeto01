@@ -41,6 +41,12 @@ public class FabricanteServiceImpl implements FabricanteService {
     @Override
     public void apagarFabricante(Integer id) {
         fabricanteRepository.deleteById(id);
+        
+    }
+    @Override
+    public void editarFabricante(Fabricante fabricante) {
+        fabricanteRepository.save(fabricante);
+        
     }
     @Override
     public Optional<Fabricante> getFabricanteById(Integer id) {
@@ -48,21 +54,23 @@ public class FabricanteServiceImpl implements FabricanteService {
     }
 
     @Override
-    public Fabricante editarFabricante(FabricanteDTO dto) {
-        Fabricante fabricante = new Fabricante();
-     
-        fabricante.setNome(dto.getNome());
-        fabricante.setDdg(dto.getDdg());
-        fabricante.setCnpj(dto.getCnpj());
-        fabricante.setNacionalidadeIndustria(dto.getNacionalidadeIndustria());
-        fabricante.setCidade(dto.getCidade());
-        fabricante.setEstado(dto.getEstado());
-        fabricante.setCep(dto.getCep());
-        fabricante.setBairro(dto.getBairro());
-        fabricante.setRua(dto.getRua());
-        fabricante.setNumero(dto.getNumero());
+    public void atualizaFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria,
+            String cidade, String estado, String cep, String bairro, String rua, String numero) {
+        fabricanteRepository
+            .findById(id)
+            .map( fabricante -> {
+                fabricante.setNome(nome);
+                fabricante.setDdg(ddg);
+                fabricante.setCnpj(cnpj);
+                fabricante.setNacionalidadeIndustria(nacionalidadeIndustria);
+                fabricante.setCidade(cidade);
+                fabricante.setEstado(estado);
+                fabricante.setCep(cep);
+                fabricante.setBairro(bairro);
+                fabricante.setRua(rua);
+                fabricante.setNumero(numero);
                 
-        fabricanteRepository.save(fabricante);
-        return fabricante;
+                return fabricanteRepository.save(fabricante);
+            }).orElseThrow();
     }
 }

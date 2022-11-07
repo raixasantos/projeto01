@@ -15,5 +15,6 @@ public interface FabricanteService {
     public Optional<Fabricante> getFabricanteById(Integer id);
     public Fabricante salvarFabricante(FabricanteDTO fabricanteDTO);
     public void apagarFabricante(Integer id);
-    public Fabricante editarFabricante(FabricanteDTO fabricanteDTO);
+    public void editarFabricante(Fabricante fabricante); 
+    public void atualizaFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria, String cidade, String estado, String cep, String bairro, String rua, String numero);
 }

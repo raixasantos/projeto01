@@ -82,6 +82,6 @@ public class FabricanteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateFabricante(@PathVariable Integer id ,
                              @RequestBody FabricanteDTO dto){
-        fabricanteService.editarFabricante(dto);
+        fabricanteService.atualizaFabricante(id, dto.getNome(), dto.getDdg(), dto.getCnpj(), null, dto.getCidade(), dto.getEstado(), dto.getCep(), dto.getBairro(), dto.getRua(), dto.getNumero());
     }
 }
