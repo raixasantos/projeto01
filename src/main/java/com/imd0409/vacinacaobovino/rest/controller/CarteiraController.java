@@ -1,30 +1,34 @@
 package com.imd0409.vacinacaobovino.rest.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.imd0409.vacinacaobovino.model.Carteira;
+import com.imd0409.vacinacaobovino.rest.dto.NovaCarteiraDTO;
 import com.imd0409.vacinacaobovino.service.CarteiraService;
 
-@Controller
+@RestController
 @RequestMapping("/carteira")
 public class CarteiraController {
     @Autowired
-    @Qualifier("carteiraServiceImpl")
     CarteiraService carteiraService;
 
-    @RequestMapping("/getCarteira/{id}")
-    public String showListaCarteira(@PathVariable Integer id, Model model){
-        
-        Optional<Carteira> carteira = carteiraService.getCarteiraByIdBovino(id);
-        model.addAttribute("carteira", carteira);
-        return "bovino/carteiraVacinacao";
+    @PostMapping("/adicionarCarteira")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Integer adicionarCarteira(@RequestBody NovaCarteiraDTO carteira) {
+        return carteiraService.salvarCarteira(carteira);
+    }
+
+    @GetMapping("/obterCarteiraPorIdBovino/{idBovino}")
+    public Carteira obterCarteiraPorIdBovino(@PathVariable Integer idBovino){        
+        return carteiraService.obterCarteiraPorIdBovino(idBovino);
     }
 
     
