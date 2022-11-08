@@ -1,4 +1,4 @@
-package com.imd0409.vacinacaobovino.service;
+package com.imd0409.vacinacaobovino.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,8 @@ import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.AplicacaoRepository;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
 import com.imd0409.vacinacaobovino.rest.dto.NovaAplicacaoDTO;
+import com.imd0409.vacinacaobovino.service.AplicacaoService;
+import com.imd0409.vacinacaobovino.service.CarteiraService;
 
 @Component
 public class AplicacaoServiceImpl implements AplicacaoService {

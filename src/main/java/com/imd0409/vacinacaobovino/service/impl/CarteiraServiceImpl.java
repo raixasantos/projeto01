@@ -1,4 +1,4 @@
-package com.imd0409.vacinacaobovino.service;
+package com.imd0409.vacinacaobovino.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +12,7 @@ import com.imd0409.vacinacaobovino.model.Carteira;
 import com.imd0409.vacinacaobovino.repository.BovinoRepository;
 import com.imd0409.vacinacaobovino.repository.CarteiraRepository;
 import com.imd0409.vacinacaobovino.rest.dto.NovaCarteiraDTO;
+import com.imd0409.vacinacaobovino.service.CarteiraService;
 
 @Component
 public class CarteiraServiceImpl implements CarteiraService {

@@ -1,4 +1,4 @@
-package com.imd0409.vacinacaobovino.service;
+package com.imd0409.vacinacaobovino.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
 import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
+import com.imd0409.vacinacaobovino.service.VacinaService;
 
 @Component
 public class VacinaServiceImpl implements VacinaService {
