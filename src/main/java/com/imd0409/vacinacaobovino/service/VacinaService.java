@@ -15,6 +15,6 @@ public interface VacinaService {
     public Optional<Vacina> getVacinaById(Integer id);
     public Vacina salvarVacina(VacinaDTO dto);
     public void apagarVacina(Integer id);
-    public void editarVacina(Vacina vacina);   
-
+    public void editarVacina(Vacina vacina); 
+    public void atualizaVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras);
 }
