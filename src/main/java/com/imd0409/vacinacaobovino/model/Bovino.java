@@ -44,7 +44,7 @@ public class Bovino {
     @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
     private Vaca vaca;
 
-    @OneToOne(mappedBy = "bovino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "bovino", fetch = FetchType.LAZY)
     private Carteira carteira;
 
     public Bovino() {
