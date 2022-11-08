@@ -1,8 +1,13 @@
 package com.imd0409.vacinacaobovino.rest.controller;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,7 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
 import com.imd0409.vacinacaobovino.rest.dto.InformacoesVacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.VacinasDTO;
 import com.imd0409.vacinacaobovino.service.VacinaService;
 
 @RestController
@@ -34,14 +41,14 @@ public class VacinaController {
     VacinaRepository vacinaRepository;
 
 
-    @PostMapping
+    @PostMapping("/adicionarVacina")
     @ResponseStatus(HttpStatus.CREATED)
-    public int save( @RequestBody VacinaDTO dto ){
+    public int save( @RequestBody NovaVacinaDTO dto ){
         Vacina vacina = vacinaService.salvarVacina(dto);
         return vacina.getId();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/obterVacinaPorId/{id}")
     public InformacoesVacinaDTO getVacinaById( @PathVariable Integer id ){
         return (InformacoesVacinaDTO) vacinaService
                 .getVacinaById(id)
@@ -50,16 +57,42 @@ public class VacinaController {
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Vacina não encontrado."));
     }
 
-    private Object converter(Vacina p) {
+    @GetMapping("/obterListaVacina")
+    public VacinasDTO obterVacina(){
+        List<Vacina> vacinasEncontradas = vacinaService.getListaVacina();
+        return converterVacinas(vacinasEncontradas);
+    }
+
+    private VacinasDTO converterVacinas(List<Vacina> vacinas) {
+        return VacinasDTO
+            .builder()
+            .vacinas(converter(vacinas))
+            .build();
+    }
+
+    private List<InformacoesVacinaDTO> converter(List<Vacina> vacinas) {
+        if(CollectionUtils.isEmpty(vacinas)){
+            return Collections.emptyList();
+        }
+        return vacinas
+            .stream()
+            .map(
+                vacina -> converter(vacina)
+            ).collect(Collectors.toList());
+    }
+
+    private InformacoesVacinaDTO converter(Vacina vacina) {
         return InformacoesVacinaDTO
                 .builder()
-                .id(p.getId())
-                .nome(p.getNome())
-                .informacoesExtras(p.getInformacoesExtras())
+                .id(vacina.getId())
+                .nome(vacina.getNome())
+                .informacoesExtras(vacina.getInformacoesExtras())
+                .fabricante(null)
+                .periodoEmDias(vacina.getPeriodoEmDias())
                 .build();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/apagarVacina/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete( @PathVariable Integer id ){
         vacinaRepository.findById(id)
@@ -72,7 +105,7 @@ public class VacinaController {
 
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/editarVacina/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateVacina(@PathVariable Integer id ,
                              @RequestBody VacinaDTO dto){
