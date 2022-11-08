@@ -72,14 +72,13 @@ public class PessoaServiceImpl implements PessoaService {
         return pessoaRepository.findById(id);
     }
 
-
-    @Override
+    
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Pessoa pessoa = pessoaRepository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado na base de dados."));
 
-        String[] roles = pessoa.isAdmin() ? new String[] { "ADMIN", "USER" } : new String[] { "USER" };
+        String[] roles = pessoa.getPapel() == "ADMIN" ? new String[] { "ADMIN", "USER" } : new String[] { "USER" };
 
         return User
                 .builder()

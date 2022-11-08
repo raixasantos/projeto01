@@ -5,9 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
+// import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.Column;
 
@@ -51,15 +49,15 @@ public class Pessoa {
     private String numero;
 
     @Column
-    @NotEmpty(message = "{campo.login.obrigatorio}")
+    // @NotEmpty(message = "{campo.login.obrigatorio}")
     private String login;
 
     @Column
-    @NotEmpty(message = "{campo.senha.obrigatorio}")
+    // @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String senha;
     
     @Column
-    private String admin;
+    private String papel;
 
     
     public Pessoa() {
@@ -78,6 +76,7 @@ public class Pessoa {
         this.rua = rua;
         this.numero = numero;
     }
+
 
     public Integer getId() {
         return this.id;
@@ -168,38 +167,48 @@ public class Pessoa {
     }
 
     public String getLogin() {
-        return this.nome;
+        return this.login;
     }
 
-    public void setLogin(String nome) {
-        this.nome = nome;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return this.senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getPapel() {
+        return this.papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
     }
     
-    public String getSenha() {
-        return this.nome;
-    }
-
-    public void setSenha(String nome) {
-        this.nome = nome;
-    }
-
 
     @Override
     public String toString() {
         return "{" +
-                " id='" + getId() + "'" +
-                ", nome='" + getNome() + "'" +
-                ", telefone='" + getTelefone() + "'" +
-                ", cpf='" + getCpf() + "'" +
-                ", email='" + getEmail() + "'" +
-                ", cidade='" + getCidade() + "'" +
-                ", estado='" + getEstado() + "'" +
-                ", cep='" + getCep() + "'" +
-                ", bairro='" + getBairro() + "'" +
-                ", rua='" + getRua() + "'" +
-                ", numero='" + getNumero() + "'" +
-                "}";
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", telefone='" + getTelefone() + "'" +
+            ", cpf='" + getCpf() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", cidade='" + getCidade() + "'" +
+            ", estado='" + getEstado() + "'" +
+            ", cep='" + getCep() + "'" +
+            ", bairro='" + getBairro() + "'" +
+            ", rua='" + getRua() + "'" +
+            ", numero='" + getNumero() + "'" +
+            ", login='" + getLogin() + "'" +
+            ", senha='" + getSenha() + "'" +
+            ", papel='" + getPapel() + "'" +
+            "}";
     }
-
-
+    
 }
