@@ -22,6 +22,7 @@ import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.rest.dto.AplicacoesDTO;
 import com.imd0409.vacinacaobovino.rest.dto.InformacoesAplicacaoDTO;
 import com.imd0409.vacinacaobovino.rest.dto.NovaAplicacaoDTO;
+import com.imd0409.vacinacaobovino.rest.dto.VacinaAplicacaoDTO;
 import com.imd0409.vacinacaobovino.service.AplicacaoService;
 import com.imd0409.vacinacaobovino.service.VacinaService;
 
@@ -42,7 +43,7 @@ public class AplicacaoController {
 
     @GetMapping("/obterListaAplicacao")
     @ResponseStatus(HttpStatus.FOUND)
-    public AplicacoesDTO obterListaAplicacao(){
+    public AplicacoesDTO obterListaAplicacao(){ // adicionar nome do boi
         List<Aplicacao> aplicacoesEncontradas = aplicacaoService.obterListaAplicacao();
         return converterAplicacoes(aplicacoesEncontradas);
     }
@@ -70,7 +71,16 @@ public class AplicacaoController {
             .builder()
             .data(aplicacao.getData())
             .dose(aplicacao.getDose())
-            .vacina(null)
+            .vacina(converter(aplicacao.getVacina()))
             .build();
+    }
+
+    private VacinaAplicacaoDTO converter(Vacina vacina) {
+        return VacinaAplicacaoDTO
+                .builder()
+                .nome(vacina.getNome())
+                .periodoEmDias(vacina.getPeriodoEmDias())
+                .informacoesExtras(vacina.getInformacoesExtras())
+                .build();
     }
 }

@@ -20,7 +20,11 @@ public class AplicacaoServiceImpl implements AplicacaoService {
 
     @Autowired
     AplicacaoRepository aplicacaoRepository;
+    
+    @Autowired
     CarteiraService carteiraService;
+    
+    @Autowired
     VacinaRepository vacinaRepository;
 
     @Override
