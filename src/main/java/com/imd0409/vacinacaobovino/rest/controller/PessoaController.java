@@ -93,13 +93,7 @@ public class PessoaController {
     @DeleteMapping("/apagarPessoa/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void apagarPessoa(@PathVariable Integer id ){
-        pessoaRepository.findById(id)
-                .map( pessoa -> {
-                    pessoaRepository.delete(pessoa );
-                    return pessoa;
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Pessoa não encontrada") );
+        pessoaService.apagarPessoa(id);
     }
 
 }

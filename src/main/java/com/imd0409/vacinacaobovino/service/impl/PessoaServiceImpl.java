@@ -5,11 +5,12 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-
+import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Pessoa;
@@ -58,7 +59,13 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public void apagarPessoa(Integer id) {
-        pessoaRepository.deleteById(id);
+        pessoaRepository.findById(id)
+                .map( pessoa -> {
+                    pessoaRepository.delete(pessoa );
+                    return pessoa;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Pessoa não encontrada") );
     }
 
 
