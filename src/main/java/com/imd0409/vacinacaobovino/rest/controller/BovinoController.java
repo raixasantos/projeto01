@@ -53,7 +53,7 @@ public class BovinoController {
 
     @PostMapping("/adicionarBovino")
     @ResponseStatus(HttpStatus.CREATED)
-    public Bovino showFormBovino(final @RequestBody BovinoDTO bovino){
+    public Integer showFormBovino(final @RequestBody BovinoDTO bovino){
         return bovinoService.salvarBovino(bovino);
     }
 

@@ -28,7 +28,7 @@ public class BovinoServiceImpl implements BovinoService{
     CarteiraService carteiraService;
 
     @Override
-    public Bovino salvarBovino(BovinoDTO bovinoDTO) {
+    public Integer salvarBovino(BovinoDTO bovinoDTO) {
        
         Bovino bovino = new Bovino();
         bovino.setNome(bovinoDTO.getNome());
@@ -39,7 +39,7 @@ public class BovinoServiceImpl implements BovinoService{
         bovino.setChifre(bovinoDTO.getChifre());
         bovinoRepository.save(bovino);
         
-        return bovino;
+        return bovino.getId();
     }
 
     @Override

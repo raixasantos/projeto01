@@ -11,7 +11,7 @@ import com.imd0409.vacinacaobovino.rest.dto.BovinoDTO;
 @Service
 public interface BovinoService {
 
-    public Bovino salvarBovino(BovinoDTO bovinoDTO);
+    public Integer salvarBovino(BovinoDTO bovinoDTO);
     public List<Bovino> getListaBovino();
     public void apagarBovino(Integer id);
     public void editarBovino(Bovino bovino);
