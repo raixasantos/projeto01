@@ -49,23 +49,14 @@ public class VacinaController {
 
     @PostMapping("/adicionarVacina")
     @ResponseStatus(HttpStatus.CREATED)
-    public int save( @RequestBody NovaVacinaDTO dto ){
-        Vacina vacina = vacinaService.salvarVacina(dto);
+    public int adicionarVacina( @RequestBody NovaVacinaDTO dto ){
+        Vacina vacina = vacinaService.adicionarVacina(dto);
         return vacina.getId();
     }
 
-    @GetMapping("/obterVacinaPorId/{id}")
-    public InformacoesVacinaDTO getVacinaById( @PathVariable Integer id ){
-        return (InformacoesVacinaDTO) vacinaService
-                .getVacinaById(id)
-                .map( p -> converter(p) )
-                .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Vacina não encontrado."));
-    }
-
     @GetMapping("/obterListaVacina")
-    public VacinasDTO obterVacina(){
-        List<Vacina> vacinasEncontradas = vacinaService.getListaVacina();
+    public VacinasDTO obterListaVacina(){
+        List<Vacina> vacinasEncontradas = vacinaService.obterListaVacina();
         return converterVacinas(vacinasEncontradas);
     }
 
@@ -87,8 +78,6 @@ public class VacinaController {
             ).collect(Collectors.toList());
     }
 
-
-
     private InformacoesVacinaDTO converter(Vacina vacina) {
         Fabricante fabricanteRecebido = fabricanteService.obterFabricantePorVacinaId(vacina.getId());
         return InformacoesVacinaDTO
@@ -109,23 +98,26 @@ public class VacinaController {
             .build();
     }
 
-    @DeleteMapping("/apagarVacina/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @PathVariable Integer id ){
-        vacinaRepository.findById(id)
-                .map( vacina -> {
-                    vacinaRepository.delete(vacina );
-                    return vacina;
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Vacina não encontrado") );
-
+    @GetMapping("/obterVacinaPorId/{id}")
+    public InformacoesVacinaDTO obterVacinaPorId( @PathVariable Integer id ){
+        return (InformacoesVacinaDTO) vacinaService
+                .obterVacinaPorId(id)
+                .map( p -> converter(p) )
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Vacina não encontrado."));
     }
 
     @PatchMapping("/editarVacina/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateVacina(@PathVariable Integer id ,
-                             @RequestBody VacinaDTO dto){
-        vacinaService.atualizaVacina(id, dto.getNome(), dto.getPeriodoEmDias(),dto.getInformacoesExtras());
+    public void updateVacina(@PathVariable Integer id , @RequestBody VacinaDTO dto){
+        vacinaService.editarVacina(id, dto.getNome(), dto.getPeriodoEmDias(),dto.getInformacoesExtras());
     }
+
+    @DeleteMapping("/apagarVacina/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void apagarVacina( @PathVariable Integer id ){
+        vacinaService.apagarVacina(id);
+    }
+
+    
 }

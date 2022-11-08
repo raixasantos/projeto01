@@ -10,11 +10,10 @@ import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
 
 @Service
 public interface VacinaService {
-    
-    public List<Vacina> getListaVacina();
-    public Optional<Vacina> getVacinaById(Integer id);
-    public Vacina salvarVacina(NovaVacinaDTO dto);
+    public Vacina adicionarVacina(NovaVacinaDTO dto);
+    public List<Vacina> obterListaVacina();
+    public Optional<Vacina> obterVacinaPorId(Integer id);
+    public void atualizarVacina(Vacina vacina); 
+    public void editarVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras);
     public void apagarVacina(Integer id);
-    public void editarVacina(Vacina vacina); 
-    public void atualizaVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras);
 }

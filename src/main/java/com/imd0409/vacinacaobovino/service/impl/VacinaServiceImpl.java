@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Fabricante;
@@ -24,7 +26,7 @@ public class VacinaServiceImpl implements VacinaService {
     FabricanteRepository fabricanteRepository;
 
     @Override
-    public Vacina salvarVacina(NovaVacinaDTO dto) {
+    public Vacina adicionarVacina(NovaVacinaDTO dto) {
         Integer idFabricanteRecebido = dto.getIdFabricante();
         Optional<Fabricante> fabricante = fabricanteRepository.findById(idFabricanteRecebido);
         Boolean existeFabricanteComIdRecebido = !fabricante.isEmpty();
@@ -44,28 +46,23 @@ public class VacinaServiceImpl implements VacinaService {
     }
 
     @Override
-    public List<Vacina> getListaVacina() {
+    public List<Vacina> obterListaVacina() {
         return vacinaRepository.findAll();
     }
 
     @Override
-    public void apagarVacina(Integer id) {
-        vacinaRepository.deleteById(id);        
+    public Optional<Vacina> obterVacinaPorId(Integer id) {
+        return vacinaRepository.findById(id);
     }
 
     @Override
-    public void editarVacina(Vacina vacina) {
+    public void atualizarVacina(Vacina vacina) {
         vacinaRepository.save(vacina);
         
     }
 
     @Override
-    public Optional<Vacina> getVacinaById(Integer id) {
-        return vacinaRepository.findById(id);
-    }
-
-    @Override
-    public void atualizaVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras) {
+    public void editarVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras) {
         vacinaRepository
             .findById(id)
             .map( vacina -> {
@@ -75,5 +72,16 @@ public class VacinaServiceImpl implements VacinaService {
                 
                 return vacinaRepository.save(vacina);
             }).orElseThrow();
+    }
+
+    @Override
+    public void apagarVacina(Integer id) {
+        vacinaRepository.findById(id)
+                .map( vacina -> {
+                    vacinaRepository.delete(vacina );
+                    return vacina;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Vacina não encontrado") );        
     }
 }
