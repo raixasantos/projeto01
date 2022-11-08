@@ -51,7 +51,7 @@ public class PessoaController {
                 .obterPessoaPorId(id)
                 .map( p -> converter(p) )
                 .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Pessoa não encontrada."));
     }
 
     private PessoaDTO converter(Pessoa pessoa){
