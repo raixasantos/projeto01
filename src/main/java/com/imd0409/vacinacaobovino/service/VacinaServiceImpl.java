@@ -48,4 +48,17 @@ public class VacinaServiceImpl implements VacinaService {
     public Optional<Vacina> getVacinaById(Integer id) {
         return vacinaRepository.findById(id);
     }
+
+    @Override
+    public void atualizaVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras) {
+        vacinaRepository
+            .findById(id)
+            .map( vacina -> {
+                vacina.setNome(nome);
+                vacina.setInformacoesExtras(informacoesExtras);
+                vacina.setPeriodoEmDias(periodoEmDias);                
+                
+                return vacinaRepository.save(vacina);
+            }).orElseThrow();
+    }
 }
