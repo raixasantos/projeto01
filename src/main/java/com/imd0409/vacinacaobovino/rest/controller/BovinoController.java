@@ -44,7 +44,6 @@ public class BovinoController {
 
     @RequestMapping("/showFormBovino")
     public String showBovinos(Model model){
-
         model.addAttribute("bovino", new Bovino());
         List<Bovino> bovinos = bovinoService.getListaBovino();
         model.addAttribute("bovinos", bovinos);
@@ -57,13 +56,13 @@ public class BovinoController {
         return bovinoService.salvarBovino(bovino);
     }
 
-    @GetMapping("/getListaBovino")
+    @GetMapping("/obterListaBovino")
     public List<Bovino> showListaBovino(){
         return bovinoService.getListaBovino();
     }
 
 
-    @GetMapping("{id}")
+    @GetMapping("/obterBovinoPorId/{id}")
     public BovinoDTO getById( @PathVariable Integer id ){
         return bovinoService
                 .getBovinoById(id)
@@ -87,7 +86,6 @@ public class BovinoController {
 
     @GetMapping("/showUpdateFormBovino/{id}")
     public String showUpdateFormBovino(@PathVariable Integer id, Model model){
-
         Optional<Bovino> bovino = bovinoService.getBovinoById(id);
         model.addAttribute("bovino", bovino);
         return "bovino/editarBovino";
@@ -95,16 +93,13 @@ public class BovinoController {
 
     @RequestMapping("/editarBovino")
     public String editarBovino(@ModelAttribute("bovino") Bovino bovino, Model model){
-
         bovinoService.editarBovino(bovino);
         return "redirect:/bovino/getListaBovino";
-    
     }
 
     @PatchMapping("/editarPeso/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePeso(@PathVariable Integer id, @RequestBody BovinoDTO bovinoDTO) {
-        System.out.println("método patch");
         Float novoPeso = bovinoDTO.getPeso();
         bovinoService.atualizarPeso(id, novoPeso);
     }
@@ -112,7 +107,6 @@ public class BovinoController {
     @PatchMapping("/editarChifre/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateChifre(@PathVariable Integer id, @RequestBody BovinoDTO bovinoDTO) {
-        System.out.println("método patch");
         Boolean novoChifre = bovinoDTO.getChifre();
         bovinoService.atualizarChifre(id, novoChifre);
     }
