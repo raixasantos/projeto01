@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Bovino;
@@ -28,7 +30,7 @@ public class BovinoServiceImpl implements BovinoService{
     CarteiraService carteiraService;
 
     @Override
-    public Integer salvarBovino(BovinoDTO bovinoDTO) {
+    public Integer adicionarBovino(BovinoDTO bovinoDTO) {
        
         Bovino bovino = new Bovino();
         bovino.setNome(bovinoDTO.getNome());
@@ -43,36 +45,36 @@ public class BovinoServiceImpl implements BovinoService{
     }
 
     @Override
-    public List<Bovino> getListaBovino() {
+    public List<Bovino> obterListaBovino() {
         return bovinoRepository.findAll();
     }
 
     @Override
-    public void apagarBovino(Integer id) {
-        bovinoRepository.deleteById(id);        
+    public Optional<Bovino> obterBovinoPorId(Integer id) {
+        return bovinoRepository.findById(id);
     }
 
     @Override
-    public void editarBovino(Bovino bovino) {
-        bovinoRepository.save(bovino);
-        
-    }
-
-    @Override
-    public void atualizarPeso(Integer id, Float novoPeso) {
+    public void editarPeso(Integer id, Float novoPeso) {
         bovinoRepository.findById(id).map( bovino -> {bovino.setPeso(novoPeso);
             return bovinoRepository.save(bovino);}).orElseThrow(() -> new RegraNegocioException("Código do bovino inválido."));
     }
 
     @Override
-    public void atualizarChifre(Integer id, Boolean novoChifre) {
+    public void editarChifre(Integer id, Boolean novoChifre) {
         bovinoRepository.findById(id).map( bovino -> {bovino.setChifre(novoChifre);
             return bovinoRepository.save(bovino);}).orElseThrow(() -> new RegraNegocioException("Código do bovino inválido."));
     }
 
     @Override
-    public Optional<Bovino> getBovinoById(Integer id) {
-        return bovinoRepository.findById(id);
+    public void apagarBovino(Integer id) {
+        bovinoRepository.findById(id)
+                .map( bovino -> {
+                    bovinoRepository.delete(bovino);
+                    return bovino;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Bovino não encontrado") );    
     }
 
 }

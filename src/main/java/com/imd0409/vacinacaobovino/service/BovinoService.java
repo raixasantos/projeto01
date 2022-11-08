@@ -11,11 +11,10 @@ import com.imd0409.vacinacaobovino.rest.dto.BovinoDTO;
 @Service
 public interface BovinoService {
 
-    public Integer salvarBovino(BovinoDTO bovinoDTO);
-    public List<Bovino> getListaBovino();
+    public Integer adicionarBovino(BovinoDTO bovinoDTO);
+    public List<Bovino> obterListaBovino();
+    public Optional<Bovino> obterBovinoPorId(Integer id);
+    public void editarPeso(Integer id, Float novoNome);
+    public void editarChifre(Integer id, Boolean novoChifre);
     public void apagarBovino(Integer id);
-    public void editarBovino(Bovino bovino);
-    public void atualizarPeso(Integer id, Float novoNome);
-    public void atualizarChifre(Integer id, Boolean novoChifre);
-    public Optional<Bovino> getBovinoById(Integer id);
 }
