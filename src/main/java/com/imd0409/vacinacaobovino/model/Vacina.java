@@ -1,7 +1,9 @@
 package com.imd0409.vacinacaobovino.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Vacina")
@@ -23,8 +27,8 @@ public class Vacina {
     @Column(name = "nome", length = 100)
     private String nome;
 
-    @ManyToMany(mappedBy = "vacinas")
-    private List<Fabricante> fabricantes;
+    @ManyToMany(mappedBy = "vacinas", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Fabricante> fabricantes = new ArrayList<Fabricante>();
 
     @Column(name = "periodoEmDias")
     private int periodoEmDias;
@@ -33,6 +37,7 @@ public class Vacina {
     private String informacoesExtras;
 
     @OneToMany(mappedBy = "vacina", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Aplicacao> aplicacoes;
     
     public Vacina() {
@@ -62,6 +67,11 @@ public class Vacina {
 
     public List<Fabricante> getFabricantes() {
         return this.fabricantes;
+    }
+
+    public void addFabricante(Fabricante fabricante) {
+        this.fabricantes.add(fabricante);
+        fabricante.getVacinas().add(this);
     }
 
     public void setFabricantes(List<Fabricante> fabricantes) {

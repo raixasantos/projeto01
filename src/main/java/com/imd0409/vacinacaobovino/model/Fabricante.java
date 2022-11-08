@@ -1,5 +1,6 @@
 package com.imd0409.vacinacaobovino.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -56,7 +57,7 @@ public class Fabricante {
         name = "fabricanteVacina", 
         joinColumns = @JoinColumn(name = "idFabricante"), 
         inverseJoinColumns = @JoinColumn(name = "idVacina"))
-    private List<Vacina> vacinas;
+    private List<Vacina> vacinas = new ArrayList<Vacina>();
 
     public Fabricante() {
     }
