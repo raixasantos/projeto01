@@ -32,10 +32,12 @@ public class CarteiraServiceImpl implements CarteiraService {
         Integer idBovinoRecebido = carteira.getIdBovino();
         Bovino bovino = bovinoRepository
                 .findById(idBovinoRecebido)
-                .orElseThrow(() -> new RegraNegocioException("Bovino não encontrado."));
+                .orElseThrow(() -> 
+                    new RegraNegocioException("Bovino não encontrado.")
+                );
 
         Boolean existeCarteiraComIdRecebido = carteiraRepository
-                .encontrarPorIdBovino(idBovinoRecebido)
+                .findByBovino(bovino)
                 .isPresent();
         if (existeCarteiraComIdRecebido) {
             throw new RegraNegocioException(
@@ -50,16 +52,40 @@ public class CarteiraServiceImpl implements CarteiraService {
     }
 
     @Override
+    public Carteira obterCarteira(Integer id) {
+        Optional<Carteira> carteira = carteiraRepository.findById(id);
+        Boolean existeCarteiraComIdRecebido = !carteira.isEmpty();
+        if (!existeCarteiraComIdRecebido) {
+            throw new RegraNegocioException(
+                "Carteira com id " + id + " não encontrada!"
+            );
+        }
+        
+        return carteira.get();
+    }
+
+    @Override
     public Carteira obterCarteiraPorIdBovino(Integer idBovino) {
         Optional<Carteira> carteira = carteiraRepository.encontrarPorIdBovino(idBovino);
-        Boolean existeCarteiraComIdRecebido = carteira.isPresent();
+        Boolean existeCarteiraComIdRecebido = !carteira.isEmpty();
         if (!existeCarteiraComIdRecebido) {
             throw new RegraNegocioException(
                 "Carteira do bovino de id " + idBovino + " não encontrada!"
             );
         }
-
+        
         return carteira.get();
+    }
+
+    @Override
+    public void apagarCarteira(Integer id) {
+        carteiraRepository.findById(id)
+            .map( carteira -> {
+                carteiraRepository.delete(carteira);
+                return carteira;
+            })
+            .orElseThrow(() -> new RegraNegocioException("Carteira não encontrada!") );
+        // carteiraRepository.deleteById(id);
     }
 
 }

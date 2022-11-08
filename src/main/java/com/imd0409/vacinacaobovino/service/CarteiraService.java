@@ -12,6 +12,8 @@ public interface CarteiraService {
 
     public Integer salvarCarteira(NovaCarteiraDTO carteira);
     public List<Carteira> obterListaCarteira();
+    public Carteira obterCarteira(Integer id);
     public Carteira obterCarteiraPorIdBovino(Integer id);
+    public void apagarCarteira(Integer id);
     
 }
