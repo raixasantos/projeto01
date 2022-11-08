@@ -7,12 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.core.userdetails.cache.NullUserCache;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 
 import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
@@ -20,7 +16,6 @@ import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
 import com.imd0409.vacinacaobovino.service.PessoaService;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
-import com.imd0409.vacinacaobovino.security.*;
 
 @Component
 public class PessoaServiceImpl implements PessoaService {

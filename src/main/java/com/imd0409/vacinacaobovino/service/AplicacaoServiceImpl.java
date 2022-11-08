@@ -11,7 +11,6 @@ import com.imd0409.vacinacaobovino.model.Aplicacao;
 import com.imd0409.vacinacaobovino.model.Carteira;
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.AplicacaoRepository;
-import com.imd0409.vacinacaobovino.repository.CarteiraRepository;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
 import com.imd0409.vacinacaobovino.rest.dto.NovaAplicacaoDTO;
 
