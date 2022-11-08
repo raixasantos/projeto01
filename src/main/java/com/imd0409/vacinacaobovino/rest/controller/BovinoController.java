@@ -111,9 +111,8 @@ public class BovinoController {
         bovinoService.atualizarChifre(id, novoChifre);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/apagarBovino/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping("/apagarBovino/{id}")
     public void apagarBovino(@PathVariable Integer id){
         bovinos.findById(id)
                 .map( bovino -> {
