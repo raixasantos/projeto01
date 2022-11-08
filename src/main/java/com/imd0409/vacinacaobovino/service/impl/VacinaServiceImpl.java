@@ -6,9 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
+import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.model.Vacina;
+import com.imd0409.vacinacaobovino.repository.FabricanteRepository;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
-import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
 import com.imd0409.vacinacaobovino.service.VacinaService;
 
 @Component
@@ -17,14 +20,25 @@ public class VacinaServiceImpl implements VacinaService {
     @Autowired
     VacinaRepository vacinaRepository;
 
-    @Override
-    public Vacina salvarVacina(VacinaDTO dto) {
-        Vacina vacina = new Vacina();
-        
-        vacina.setNome(dto.getNome());
-        vacina.setPeriodoEmDias(vacina.getPeriodoEmDias());
-        vacina.setInformacoesExtras(vacina.getInformacoesExtras());
+    @Autowired
+    FabricanteRepository fabricanteRepository;
 
+    @Override
+    public Vacina salvarVacina(NovaVacinaDTO dto) {
+        Integer idFabricanteRecebido = dto.getIdFabricante();
+        Optional<Fabricante> fabricante = fabricanteRepository.findById(idFabricanteRecebido);
+        Boolean existeFabricanteComIdRecebido = !fabricante.isEmpty();
+        if (!existeFabricanteComIdRecebido) {
+            throw new RegraNegocioException(
+                "Fabricante não encontrado!"
+            );
+        }
+        
+        Vacina vacina = new Vacina();        
+        vacina.setNome(dto.getNome());
+        vacina.setPeriodoEmDias(dto.getPeriodoEmDias());
+        vacina.setInformacoesExtras(dto.getInformacoesExtras());
+        vacina.addFabricante(fabricante.get());  
         vacinaRepository.save(vacina);
         return vacina;
     }

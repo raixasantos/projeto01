@@ -6,14 +6,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.imd0409.vacinacaobovino.model.Vacina;
-import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
 
 @Service
 public interface VacinaService {
     
     public List<Vacina> getListaVacina();
     public Optional<Vacina> getVacinaById(Integer id);
-    public Vacina salvarVacina(VacinaDTO dto);
+    public Vacina salvarVacina(NovaVacinaDTO dto);
     public void apagarVacina(Integer id);
     public void editarVacina(Vacina vacina); 
     public void atualizaVacina(Integer id, String nome, int periodoEmDias, String informacoesExtras);
