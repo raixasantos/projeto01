@@ -24,12 +24,7 @@ public class PessoaServiceImpl implements PessoaService {
     PessoaRepository pessoaRepository;
 
     @Override
-    public List<Pessoa> getListaPessoa() {
-        return pessoaRepository.findAll();
-    }
-
-    @Override
-    public Pessoa salvarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
+    public Pessoa adicionarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(pessoaDTO.getNome());
         pessoa.setTelefone(pessoaDTO.getTelefone());
@@ -46,15 +41,25 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public void atualizaNome(Integer id, String novoNome) {
+    public List<Pessoa> obterListaPessoa() {
+        return pessoaRepository.findAll();
+    }
+
+    @Override
+    public void editarNome(Integer id, String novoNome) {
         pessoaRepository.findById(id).map( pessoa -> {pessoa.setNome(novoNome);
             return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de cliente inválido."));
     }
 
     @Override
-    public void atualizaTelefone(Integer id, String novoTelefone) {
+    public void editarTelefone(Integer id, String novoTelefone) {
         pessoaRepository.findById(id).map( pessoa -> {pessoa.setTelefone(novoTelefone);
             return pessoaRepository.save(pessoa);}).orElseThrow(() -> new RegraNegocioException("Código de telefone do cliente inválido."));
+    }
+
+    @Override
+    public Optional<Pessoa> obterPessoaPorId(Integer id) {
+        return pessoaRepository.findById(id);
     }
 
     @Override
@@ -66,12 +71,6 @@ public class PessoaServiceImpl implements PessoaService {
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Pessoa não encontrada") );
-    }
-
-
-    @Override
-    public Optional<Pessoa> getPessoaById(Integer id) {
-        return pessoaRepository.findById(id);
     }
 
     

@@ -10,17 +10,10 @@ import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 
 @Service
 public interface PessoaService {
-    public List<Pessoa> getListaPessoa();
-
-    public Pessoa salvarPessoa(PessoaDTO pessoaDTO);// nova inscrição
-
-    public void atualizaNome(Integer id, String novoNome); // novo met
-
-    public void atualizaTelefone(Integer id, String novoTelefone); // editar telefone
-
-    public void apagarPessoa(Integer id);
-
-    public Optional<Pessoa> getPessoaById(Integer id);
-
-    
+    public Pessoa adicionarPessoa(PessoaDTO pessoaDTO);// nova inscrição
+    public List<Pessoa> obterListaPessoa();
+    public Optional<Pessoa> obterPessoaPorId(Integer id);
+    public void editarNome(Integer id, String novoNome); // novo met
+    public void editarTelefone(Integer id, String novoTelefone); // editar telefone
+    public void apagarPessoa(Integer id);    
 }

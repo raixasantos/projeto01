@@ -34,21 +34,21 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping("/")
-    public Integer lerPesssoa() {
-        System.out.println("Reagiu");
-        return 1000;
+    @PostMapping("/adicionarPessoa")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pessoa adicionarPessoa(final @RequestBody PessoaDTO pessoa) {
+        return pessoaService.adicionarPessoa(pessoa);
     }
 
     @GetMapping("/obterListaPessoa")
-    public List<Pessoa> showListaPessoa(){
-        return pessoaService.getListaPessoa();
+    public List<Pessoa> obterListaPessoa(){
+        return pessoaService.obterListaPessoa();
     }
 
-    @GetMapping("/obterPessoaId/{id}")
-    public PessoaDTO getById( @PathVariable Integer id ){
+    @GetMapping("/obterPessoaPorId/{id}")
+    public PessoaDTO obterPessoaPorId( @PathVariable Integer id ){
         return pessoaService
-                .getPessoaById(id)
+                .obterPessoaPorId(id)
                 .map( p -> converter(p) )
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
@@ -70,24 +70,18 @@ public class PessoaController {
                 .build();
     }
 
-    @PostMapping("/adicionarPessoa")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa salvarPessoa(final @RequestBody PessoaDTO pessoa) {
-        return pessoaService.salvarPessoa(pessoa);
-    }
-
     @PatchMapping("/editarNome/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateNome(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
+    public void editarNome(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
         String novoNome = pessoaDTO.getNome();
-        pessoaService.atualizaNome(id, novoNome);
+        pessoaService.editarNome(id, novoNome);
     }
 
     @PatchMapping("/editarTelefone/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateTelefone(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
+    public void editarTelefone(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
         String novoTelefone = pessoaDTO.getTelefone();
-        pessoaService.atualizaTelefone(id, novoTelefone);
+        pessoaService.editarTelefone(id, novoTelefone);
     }
 
     @DeleteMapping("/apagarPessoa/{id}")
