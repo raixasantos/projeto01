@@ -36,7 +36,7 @@ public class PessoaController {
 
     @PostMapping("/adicionarPessoa")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa adicionarPessoa(final @RequestBody PessoaDTO pessoa) {
+    public Integer adicionarPessoa(final @RequestBody PessoaDTO pessoa) {
         return pessoaService.adicionarPessoa(pessoa);
     }
 

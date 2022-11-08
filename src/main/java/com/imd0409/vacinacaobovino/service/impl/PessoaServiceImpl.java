@@ -24,7 +24,7 @@ public class PessoaServiceImpl implements PessoaService {
     PessoaRepository pessoaRepository;
 
     @Override
-    public Pessoa adicionarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
+    public Integer adicionarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(pessoaDTO.getNome());
         pessoa.setTelefone(pessoaDTO.getTelefone());
@@ -37,7 +37,7 @@ public class PessoaServiceImpl implements PessoaService {
         pessoa.setRua(pessoaDTO.getRua());
         pessoa.setNumero(pessoaDTO.getNumero());
         pessoaRepository.save(pessoa);
-        return pessoa;
+        return pessoa.getId();
     }
 
     @Override
