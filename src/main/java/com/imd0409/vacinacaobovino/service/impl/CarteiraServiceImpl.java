@@ -24,12 +24,7 @@ public class CarteiraServiceImpl implements CarteiraService {
     CarteiraRepository carteiraRepository;
 
     @Override
-    public List<Carteira> obterListaCarteira() {
-        return carteiraRepository.findAll();
-    }
-
-    @Override
-    public Integer salvarCarteira(NovaCarteiraDTO carteira) {
+    public Integer adicionarCarteira(NovaCarteiraDTO carteira) {
         Integer idBovinoRecebido = carteira.getIdBovino();
         Bovino bovino = bovinoRepository
                 .findById(idBovinoRecebido)
@@ -50,6 +45,11 @@ public class CarteiraServiceImpl implements CarteiraService {
         novaCarteira.setBovino(bovino);
         carteiraRepository.save(novaCarteira);
         return novaCarteira.getId();
+    }
+
+    @Override
+    public List<Carteira> obterListaCarteira() {
+        return carteiraRepository.findAll();
     }
 
     @Override
@@ -86,7 +86,6 @@ public class CarteiraServiceImpl implements CarteiraService {
                 return carteira;
             })
             .orElseThrow(() -> new RegraNegocioException("Carteira não encontrada!") );
-        // carteiraRepository.deleteById(id);
     }
 
 }

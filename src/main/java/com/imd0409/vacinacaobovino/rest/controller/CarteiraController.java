@@ -35,28 +35,7 @@ public class CarteiraController {
     @PostMapping("/adicionarCarteira")
     @ResponseStatus(HttpStatus.CREATED)
     public Integer adicionarCarteira(@RequestBody NovaCarteiraDTO carteira) {
-        return carteiraService.salvarCarteira(carteira);
-    }
-
-    @DeleteMapping("/apagarCarteira/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void apagarCarteira(@PathVariable Integer id) {
-        carteiraService.apagarCarteira(id);
-    }
-
-
-    @GetMapping("/obterCarteira/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public InformacoesCarteiraDTO obterCarteira(@PathVariable Integer id){
-        Carteira carteiraEncontrada = carteiraService.obterCarteira(id);
-        return converter(carteiraEncontrada);
-    }
-
-    @GetMapping("/obterCarteiraPorIdBovino/{idBovino}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public InformacoesCarteiraDTO obterCarteiraPorIdBovino(@PathVariable Integer idBovino){
-        Carteira carteiraEncontrada = carteiraService.obterCarteiraPorIdBovino(idBovino);
-        return converter(carteiraEncontrada);
+        return carteiraService.adicionarCarteira(carteira);
     }
 
     @GetMapping("/obterListaCarteira")
@@ -84,6 +63,20 @@ public class CarteiraController {
             ).collect(Collectors.toList());
     }
 
+    @GetMapping("/obterCarteira/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public InformacoesCarteiraDTO obterCarteira(@PathVariable Integer id){
+        Carteira carteiraEncontrada = carteiraService.obterCarteira(id);
+        return converter(carteiraEncontrada);
+    }
+
+    @GetMapping("/obterCarteiraPorIdBovino/{idBovino}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public InformacoesCarteiraDTO obterCarteiraPorIdBovino(@PathVariable Integer idBovino){
+        Carteira carteiraEncontrada = carteiraService.obterCarteiraPorIdBovino(idBovino);
+        return converter(carteiraEncontrada);
+    }
+
     private InformacoesCarteiraDTO converter(Carteira carteira) {
         return InformacoesCarteiraDTO
             .builder()
@@ -102,5 +95,11 @@ public class CarteiraController {
                 .peso(bovino.getPeso())
                 .chifre(bovino.getChifre())
                 .build();
+    }
+
+    @DeleteMapping("/apagarCarteira/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void apagarCarteira(@PathVariable Integer id) {
+        carteiraService.apagarCarteira(id);
     }
 }
