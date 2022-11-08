@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,17 +33,17 @@ public class FabricanteController {
     @Autowired
     FabricanteRepository fabricanteRepository;
 
-    @PostMapping
+    @PostMapping("/adicionarFabricante")
     @ResponseStatus(HttpStatus.CREATED)
-    public int save( @RequestBody FabricanteDTO dto ){
-        Fabricante fabricante = fabricanteService.salvarFabricante(dto);
+    public int adicionarFabricante( @RequestBody FabricanteDTO dto ){
+        Fabricante fabricante = fabricanteService.adicionarFabricante(dto);
         return fabricante.getId();
     }
 
-    @GetMapping("{id}")
-    public InformacoesFabricanteDTO getFabricanteById( @PathVariable Integer id ){
+    @GetMapping("/obterFabricantePorId/{id}")
+    public InformacoesFabricanteDTO obterFabricantePorId( @PathVariable Integer id ){
         return fabricanteService
-                .getFabricanteById(id)
+                .obterFabricantePorId(id)
                 .map( p -> converter(p) )
                 .orElseThrow(() ->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Fabricante não encontrado."));
@@ -65,16 +66,16 @@ public class FabricanteController {
                 .build();
     }
 
-    @PatchMapping("{id}")
+    @PutMapping("/editarFabricante/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateFabricante(@PathVariable Integer id ,
+    public void editarFabricante(@PathVariable Integer id ,
                              @RequestBody FabricanteDTO dto){
-        fabricanteService.atualizaFabricante(id, dto.getNome(), dto.getDdg(), dto.getCnpj(), null, dto.getCidade(), dto.getEstado(), dto.getCep(), dto.getBairro(), dto.getRua(), dto.getNumero());
+        fabricanteService.editarFabricante(id, dto.getNome(), dto.getDdg(), dto.getCnpj(), null, dto.getCidade(), dto.getEstado(), dto.getCep(), dto.getBairro(), dto.getRua(), dto.getNumero());
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/apagarFabricante/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @PathVariable Integer id ){
+    public void apagarFabricante( @PathVariable Integer id ){
         fabricanteService.apagarFabricante(id);
     }
 }

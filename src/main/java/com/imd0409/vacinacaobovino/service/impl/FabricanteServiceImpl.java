@@ -20,7 +20,7 @@ public class FabricanteServiceImpl implements FabricanteService {
     FabricanteRepository fabricanteRepository;
 
     @Override
-    public Fabricante salvarFabricante(FabricanteDTO dto) {
+    public Fabricante adicionarFabricante(FabricanteDTO dto) {
         Fabricante fabricante = new Fabricante();
      
         fabricante.setNome(dto.getNome());
@@ -44,7 +44,7 @@ public class FabricanteServiceImpl implements FabricanteService {
     }
 
     @Override
-    public Optional<Fabricante> getFabricanteById(Integer id) {
+    public Optional<Fabricante> obterFabricantePorId(Integer id) {
         return fabricanteRepository.findById(id);
     }
     
@@ -55,7 +55,7 @@ public class FabricanteServiceImpl implements FabricanteService {
     }
 
     @Override
-    public void atualizaFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria,
+    public void editarFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria,
             String cidade, String estado, String cep, String bairro, String rua, String numero) {
         fabricanteRepository
             .findById(id)
