@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.imd0409.vacinacaobovino.model.Aplicacao;
+import com.imd0409.vacinacaobovino.rest.dto.NovaAplicacaoDTO;
 
 @Service
 public interface AplicacaoService {
     
-    public List<Aplicacao> getListaAplicacao();
-    public Aplicacao salvarAplicacao(Aplicacao aplicacao);
+    public Integer salvarAplicacao(NovaAplicacaoDTO aplicacao);
+    public List<Aplicacao> obterListaAplicacao();
 }
