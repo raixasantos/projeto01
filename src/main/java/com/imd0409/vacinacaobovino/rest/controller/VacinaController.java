@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
 import com.imd0409.vacinacaobovino.rest.dto.InformacoesVacinaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.NomeCnpjFabricanteDTO;
 import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.VacinaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.VacinasDTO;
+import com.imd0409.vacinacaobovino.service.FabricanteService;
 import com.imd0409.vacinacaobovino.service.VacinaService;
 
 @RestController
@@ -39,6 +42,9 @@ public class VacinaController {
     @Autowired
     @Qualifier("vacinaRepository")
     VacinaRepository vacinaRepository;
+
+    @Autowired
+    FabricanteService fabricanteService;
 
 
     @PostMapping("/adicionarVacina")
@@ -81,15 +87,26 @@ public class VacinaController {
             ).collect(Collectors.toList());
     }
 
+
+
     private InformacoesVacinaDTO converter(Vacina vacina) {
+        Fabricante fabricanteRecebido = fabricanteService.obterFabricantePorVacinaId(vacina.getId());
         return InformacoesVacinaDTO
                 .builder()
                 .id(vacina.getId())
                 .nome(vacina.getNome())
                 .informacoesExtras(vacina.getInformacoesExtras())
-                .fabricante(null)
+                .fabricante(converter(fabricanteRecebido))
                 .periodoEmDias(vacina.getPeriodoEmDias())
                 .build();
+    }
+
+    private NomeCnpjFabricanteDTO converter(Fabricante fabricante) {
+        return NomeCnpjFabricanteDTO
+            .builder()
+            .nome(fabricante.getNome())
+            .cnpj(fabricante.getCnpj())
+            .build();
     }
 
     @DeleteMapping("/apagarVacina/{id}")

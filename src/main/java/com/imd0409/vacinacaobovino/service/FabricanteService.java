@@ -13,6 +13,7 @@ public interface FabricanteService {
     public Fabricante adicionarFabricante(FabricanteDTO fabricanteDTO);
     public List<Fabricante> getListaFabricante();
     public Optional<Fabricante> obterFabricantePorId(Integer id);
+    public Fabricante obterFabricantePorVacinaId(Integer id);
     public void editarFabricante(Fabricante fabricante); 
     public void editarFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria, String cidade, String estado, String cep, String bairro, String rua, String numero);
     public void apagarFabricante(Integer id);

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.imd0409.vacinacaobovino.exception.RegraNegocioException;
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.repository.FabricanteRepository;
 import com.imd0409.vacinacaobovino.rest.dto.FabricanteDTO;
@@ -46,6 +47,17 @@ public class FabricanteServiceImpl implements FabricanteService {
     @Override
     public Optional<Fabricante> obterFabricantePorId(Integer id) {
         return fabricanteRepository.findById(id);
+    }
+
+    @Override
+    public Fabricante obterFabricantePorVacinaId(Integer id) {
+        List<Fabricante> fabricante = fabricanteRepository.findFabricantesByVacinasId(id);
+        if(fabricante.isEmpty()) {
+            throw new RegraNegocioException(
+                "Fabricante não encontrado!"
+            );
+        }
+        return fabricante.get(0);
     }
     
     @Override
