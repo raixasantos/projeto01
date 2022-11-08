@@ -21,7 +21,7 @@ import javax.crypto.SecretKey;
 @Service
 public class JwtService {
     
-    @Value("${security.jwt.expiracao}") //injetando propriedades do applications.properties
+    @Value("${security.jwt.expiracao}") 
     private String expiracao;
 
     @Value("${security.jwt.chave-assinatura}")

@@ -3,12 +3,14 @@ package com.imd0409.vacinacaobovino.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,9 +22,14 @@ import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
 
 @Component
 public class PessoaServiceImpl implements PessoaService {
+
+    @Autowired
+    public PasswordEncoder passwordEncoder;
+
     @Autowired
     PessoaRepository pessoaRepository;
 
+    @Transactional
     @Override
     public Integer adicionarPessoa(PessoaDTO pessoaDTO) {// nova inscricao
         Pessoa pessoa = new Pessoa();
@@ -36,6 +43,9 @@ public class PessoaServiceImpl implements PessoaService {
         pessoa.setBairro(pessoaDTO.getBairro());
         pessoa.setRua(pessoaDTO.getRua());
         pessoa.setNumero(pessoaDTO.getNumero());
+        pessoa.setLogin(pessoaDTO.getLogin());
+        pessoa.setSenha(pessoaDTO.getSenha());
+        pessoa.setPapel(pessoaDTO.getPapel());
         pessoaRepository.save(pessoa);
         return pessoa.getId();
     }
@@ -77,29 +87,33 @@ public class PessoaServiceImpl implements PessoaService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Pessoa pessoa = pessoaRepository.findByLogin(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado na base de dados."));
-
-        String[] roles = pessoa.getPapel() == "ADMIN" ? new String[] { "ADMIN", "USER" } : new String[] { "USER" };
-
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!"));
+        
+        String[] roles = new String[] {};
+        if(pessoa.getPapel() == "GESTOR") {
+            roles =  new String[] { "GESTOR", "VETERINARIO", "PROPRIETARIO" };
+        } else if(pessoa.getPapel() == "VETERINARIO"){
+            roles =  new String[] { "VETERINARIO", "PROPRIETARIO" };
+        } else {
+            roles =  new String[] { "PROPRIETARIO" };
+        }
+        
         return User
                 .builder()
                 .username(pessoa.getLogin())
                 .password(pessoa.getSenha())
                 .roles(roles)
                 .build();
+    }
 
-        /*
-         * Usuário em memória
-         * if(!username.equals("cicrano")){
-         * throw new UsernameNotFoundException("Usuário não encontrado na base.");
-         * }
-         * 
-         * return User
-         * .builder()
-         * .username("cicrano")
-         * .password(passwordEncoder.encode("123"))
-         * .roles("USER")
-         * .build();
-         */
+    public UserDetails autenticar(Pessoa pessoa){
+        UserDetails user = loadUserByUsername(pessoa.getLogin());
+        boolean senhasBatem = passwordEncoder.matches(pessoa.getSenha(), user.getPassword());
+
+        if(senhasBatem){
+            return user;
+        }
+
+        throw new RegraNegocioException("Senha inválida");
     }
 }

@@ -21,5 +21,8 @@ public class PessoaDTO {
     private String bairro;
     private String rua;
     private String numero;
+    private String login;
+    private String senha;
+    private String papel;
     
 }

@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-// import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.Column;
 
@@ -49,11 +49,11 @@ public class Pessoa {
     private String numero;
 
     @Column
-    // @NotEmpty(message = "{campo.login.obrigatorio}")
+    @NotEmpty(message = "Campo obrigatório!")
     private String login;
 
     @Column
-    // @NotEmpty(message = "{campo.senha.obrigatorio}")
+    @NotEmpty(message = "Campo obrigatório!")
     private String senha;
     
     @Column

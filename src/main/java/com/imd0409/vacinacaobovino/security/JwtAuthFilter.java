@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//intercepta a requisição
+
 public class JwtAuthFilter extends OncePerRequestFilter {
     private JwtService jwtService;
     private PessoaServiceImpl pessoaService;
@@ -35,7 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         if( authorization != null && authorization.startsWith("Bearer")){
             String token = authorization.split(" ")[1];
             boolean isValid = jwtService.tokenValido(token);
-
+            
             if(isValid){
                 String loginPessoa = jwtService.obterLoginPessoa(token);
                 UserDetails pessoa = pessoaService.loadUserByUsername(loginPessoa);

@@ -44,9 +44,13 @@ public class VacinacaoBovinoApplication {
 			
             System.out.println("Cadastrando vacina");
             vacinaRepository.save(new Vacina("Aftosa", 360, "Contra a febre aftosa"));
-
+			
             System.out.println("Cadastrando pessoa");
-            pessoaRepository.save(new Pessoa("Maria", "995741268", "45678912365", "maria12@gmail.com", "Jucurutu", "Rio Grande do Norte", "59330000", "Zona rural", "Veteranos", "13"));
+			Pessoa pessoa = new Pessoa("Maria", "995741268", "45678912365", "maria12@gmail.com", "Jucurutu", "Rio Grande do Norte", "59330000", "Zona rural", "Veteranos", "13");
+            pessoa.setLogin("Gestor");
+			pessoa.setSenha("senha123");
+			pessoa.setPapel("GESTOR");
+			pessoaRepository.save(pessoa);
             
 		};
 	}
