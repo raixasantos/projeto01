@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.repository.FabricanteRepository;
@@ -17,10 +19,6 @@ public class FabricanteServiceImpl implements FabricanteService {
     @Autowired
     FabricanteRepository fabricanteRepository;
 
-    @Override
-    public List<Fabricante> getListaFabricante() {
-        return fabricanteRepository.findAll();
-    }
     @Override
     public Fabricante salvarFabricante(FabricanteDTO dto) {
         Fabricante fabricante = new Fabricante();
@@ -39,19 +37,21 @@ public class FabricanteServiceImpl implements FabricanteService {
         fabricanteRepository.save(fabricante);
         return fabricante;
     }
+
     @Override
-    public void apagarFabricante(Integer id) {
-        fabricanteRepository.deleteById(id);
-        
+    public List<Fabricante> getListaFabricante() {
+        return fabricanteRepository.findAll();
     }
+
+    @Override
+    public Optional<Fabricante> getFabricanteById(Integer id) {
+        return fabricanteRepository.findById(id);
+    }
+    
     @Override
     public void editarFabricante(Fabricante fabricante) {
         fabricanteRepository.save(fabricante);
         
-    }
-    @Override
-    public Optional<Fabricante> getFabricanteById(Integer id) {
-        return fabricanteRepository.findById(id);
     }
 
     @Override
@@ -73,5 +73,16 @@ public class FabricanteServiceImpl implements FabricanteService {
                 
                 return fabricanteRepository.save(fabricante);
             }).orElseThrow();
+    }
+
+    @Override
+    public void apagarFabricante(Integer id) {
+        fabricanteRepository.findById(id)
+                .map( fabricante -> {
+                    fabricanteRepository.delete(fabricante );
+                    return fabricante;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Fabricante não encontrado") );
     }
 }

@@ -10,11 +10,10 @@ import com.imd0409.vacinacaobovino.rest.dto.FabricanteDTO;
 
 @Service
 public interface FabricanteService {
-
+    public Fabricante salvarFabricante(FabricanteDTO fabricanteDTO);
     public List<Fabricante> getListaFabricante();
     public Optional<Fabricante> getFabricanteById(Integer id);
-    public Fabricante salvarFabricante(FabricanteDTO fabricanteDTO);
-    public void apagarFabricante(Integer id);
     public void editarFabricante(Fabricante fabricante); 
     public void atualizaFabricante(Integer id, String nome, String ddg, String cnpj, String nacionalidadeIndustria, String cidade, String estado, String cep, String bairro, String rua, String numero);
+    public void apagarFabricante(Integer id);
 }

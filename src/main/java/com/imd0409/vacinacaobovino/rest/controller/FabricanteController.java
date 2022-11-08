@@ -32,6 +32,13 @@ public class FabricanteController {
     @Autowired
     FabricanteRepository fabricanteRepository;
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public int save( @RequestBody FabricanteDTO dto ){
+        Fabricante fabricante = fabricanteService.salvarFabricante(dto);
+        return fabricante.getId();
+    }
+
     @GetMapping("{id}")
     public InformacoesFabricanteDTO getFabricanteById( @PathVariable Integer id ){
         return fabricanteService
@@ -58,30 +65,16 @@ public class FabricanteController {
                 .build();
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public int save( @RequestBody FabricanteDTO dto ){
-        Fabricante fabricante = fabricanteService.salvarFabricante(dto);
-        return fabricante.getId();
-    }
-
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @PathVariable Integer id ){
-        fabricanteRepository.findById(id)
-                .map( fabricante -> {
-                    fabricanteRepository.delete(fabricante );
-                    return fabricante;
-                })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Fabricante não encontrado") );
-
-    }
-
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateFabricante(@PathVariable Integer id ,
                              @RequestBody FabricanteDTO dto){
         fabricanteService.atualizaFabricante(id, dto.getNome(), dto.getDdg(), dto.getCnpj(), null, dto.getCidade(), dto.getEstado(), dto.getCep(), dto.getBairro(), dto.getRua(), dto.getNumero());
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete( @PathVariable Integer id ){
+        fabricanteService.apagarFabricante(id);
     }
 }
