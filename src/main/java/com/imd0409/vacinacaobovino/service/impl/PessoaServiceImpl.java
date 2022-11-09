@@ -93,7 +93,7 @@ public class PessoaServiceImpl implements PessoaService {
         if(pessoa.getPapel() == "GESTOR") {
             roles =  new String[] { "GESTOR", "VETERINARIO", "PROPRIETARIO" };
         } else if(pessoa.getPapel() == "VETERINARIO"){
-            roles =  new String[] { "VETERINARIO", "PROPRIETARIO" };
+            roles =  new String[] { "VETERINARIO" };
         } else {
             roles =  new String[] { "PROPRIETARIO" };
         }

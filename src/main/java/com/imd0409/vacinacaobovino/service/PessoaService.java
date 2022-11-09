@@ -3,6 +3,7 @@ package com.imd0409.vacinacaobovino.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.imd0409.vacinacaobovino.model.Pessoa;
@@ -16,4 +17,6 @@ public interface PessoaService {
     public void editarNome(Integer id, String novoNome); // novo met
     public void editarTelefone(Integer id, String novoTelefone); // editar telefone
     public void apagarPessoa(Integer id);    
+    public UserDetails loadUserByUsername(String username);
+    public UserDetails autenticar(Pessoa pessoa);
 }

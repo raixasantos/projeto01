@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.imd0409.vacinacaobovino.model.Bovino;
 import com.imd0409.vacinacaobovino.model.Fabricante;
@@ -32,6 +34,8 @@ public class VacinacaoBovinoApplication {
 	@Autowired
     AplicacaoRepository aplicacaoRepository;
 
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 	@Bean
 	public CommandLineRunner init(){
 		return args -> {
@@ -48,7 +52,7 @@ public class VacinacaoBovinoApplication {
             System.out.println("Cadastrando pessoa");
 			Pessoa pessoa = new Pessoa("Maria", "995741268", "45678912365", "maria12@gmail.com", "Jucurutu", "Rio Grande do Norte", "59330000", "Zona rural", "Veteranos", "13");
             pessoa.setLogin("Gestor");
-			pessoa.setSenha("senha123");
+			pessoa.setSenha(passwordEncoder.encode("senha123"));
 			pessoa.setPapel("GESTOR");
 			pessoaRepository.save(pessoa);
             

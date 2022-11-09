@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,27 +19,49 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.imd0409.vacinacaobovino.model.Pessoa;
 import com.imd0409.vacinacaobovino.repository.PessoaRepository;
+import com.imd0409.vacinacaobovino.rest.dto.CredenciaisDTO;
 import com.imd0409.vacinacaobovino.rest.dto.PessoaDTO;
+import com.imd0409.vacinacaobovino.rest.dto.TokenDTO;
+import com.imd0409.vacinacaobovino.security.JwtService;
 import com.imd0409.vacinacaobovino.service.PessoaService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/pessoa")
+@RequiredArgsConstructor
 public class PessoaController {
     @Autowired
     PessoaService pessoaService;
 
     @Autowired
     PessoaRepository pessoaRepository;
+    
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public PessoaController(PessoaService pessoaService) {
-        this.pessoaService = pessoaService;
-    }
+    private final JwtService jwtService;
 
     @PostMapping("/adicionarPessoa")
     @ResponseStatus(HttpStatus.CREATED)
     public Integer adicionarPessoa(final @RequestBody PessoaDTO pessoa) {
+        String senhaCriptografada = passwordEncoder.encode(pessoa.getSenha());
+        pessoa.setSenha(senhaCriptografada);
         return pessoaService.adicionarPessoa(pessoa);
+    }
+
+    @PostMapping("/autenticar")
+    @ResponseStatus(HttpStatus.OK)
+    public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais) {
+        try{
+            Pessoa pessoaAutenticada = new Pessoa();
+            pessoaAutenticada.setLogin(credenciais.getLogin());
+            pessoaAutenticada.setSenha(credenciais.getSenha());            
+            pessoaService.autenticar(pessoaAutenticada);
+            String token = jwtService.gerarToken(pessoaAutenticada);
+            return new TokenDTO(pessoaAutenticada.getLogin(), token);
+        } catch (UsernameNotFoundException e ){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
     }
 
     @GetMapping("/obterListaPessoa")
