@@ -13,13 +13,13 @@ As ferramentas utilizadas foram:
 
 ## Endpoints
 
-Os endpoints da API podem ser verificadas no arquivo:
+Os endpoints da API podem ser verificados no Postman no arquivo abaixo:
 
-
+[API Vacinação Bovino - Coleção de requisições](https://github.com/raixasantos/vacinacao-bovino/blob/projeto02/Vacina%C3%A7%C3%A3o%20Bovino.postman_collection.json)
 
 
 ## Desenvolvedores
-- [Angelo Gustavo] (https://github.com/AngeloGustavo)
+- [Angelo Gustavo](https://github.com/AngeloGustavo)
 - [Neylane Lopes](https://github.com/neylanepl) 
 - [Raíssa Santos](https://github.com/raixasantos)
-- [Silvia] (https://github.com/silviafds)
+- [Silvia](https://github.com/silviafds)
