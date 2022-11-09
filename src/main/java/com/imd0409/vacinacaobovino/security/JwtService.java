@@ -43,13 +43,11 @@ public class JwtService {
                 .signWith(key) //assinatura do token (recebe parametro key)
                 .compact();
     }
-    //https://jwt.io
 
     
 
      private Claims obterClaims( String token ) throws ExpiredJwtException { //lança erro caso o token tenha sido expirado
-
-        //chave de assinatura 
+ 
         SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(chaveAssinatura));
 
         return Jwts
@@ -77,21 +75,4 @@ public class JwtService {
     public String obterLoginPessoa(String token) throws ExpiredJwtException{
         return (String) (obterClaims(token)).getSubject();
     }
-
-    /*public static void main(String[] args){
-        ConfigurableApplicationContext contexto = SpringApplication.run(VacinacaoBovinoApplication.class);
-        JwtService service = contexto.getBean(JwtService.class);
-        Pessoa pessoa = Pessoa.builder().login("fulano").build();
-        System.out.println("Gerando token");
-        String token = service.gerarToken(pessoa);
-        System.out.println(token);
-
-        System.out.println("Verifica se o token é válido");
-        boolean isTokenValido = service.tokenValido(token);
-        System.out.println("O token é válido? " + isTokenValido);
-
-        System.out.println("Obtenha o login de Pessoa");
-        String login = service.obterLoginPessoa(token);
-        System.out.println(login);
-    }*/
 }
