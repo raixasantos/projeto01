@@ -1,0 +1,802 @@
+{
+	"info": {
+		"_postman_id": "018bd251-a5a8-4d51-bcb5-436ff636b356",
+		"name": "Vacinação Bovino",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "Adicionar pessoa",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"João Silva\",\r\n    \"telefone\": \"99881234\",\r\n    \"cpf\": \"12345687912\",\r\n    \"email\": \"joao@gmail.com\",\r\n    \"cidade\": \"Natal\",\r\n    \"estado\": \"Rio Grande do Norte\",\r\n    \"cep\": \"59963562\",\r\n    \"bairro\": \"Centro\",\r\n    \"rua\": \"Oscar Brandão\",\r\n    \"numero\": \"52\",\r\n    \"login\": \"prop\",\r\n    \"senha\": \"senha123\",\r\n    \"papel\": \"PROPRIETARIO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoa/adicionarPessoa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"adicionarPessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autenticar pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"vet\",\n    \"senha\": \"senha123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoa/autenticar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"autenticar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar nome de pessoa",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Rosane\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoa/editarNome/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"editarNome",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar telefone de pessoa",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"telefone\": \"40028922\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pessoa/editarTelefone/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"editarTelefone",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoa/obterPessoaId/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"obterPessoaId",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de pessoa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoa/obterListaPessoa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"obterListaPessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar pessoa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoa/apagarPessoa/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"apagarPessoa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bovino",
+			"item": [
+				{
+					"name": "Adicionar bovino",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Mimoso\",\n    \"aniversario\" : \"2021-10-08\",\n    \"sexo\" : \"Macho\",\n    \"cor\" : \"Preto\",\n    \"peso\" : 250,\n    \"chifre\" : \"False\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/bovino/adicionarBovino",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"adicionarBovino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar peso bovino",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"peso\": 200.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/bovino/editarPeso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"editarPeso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar chifre bovino",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chifre\": \"True\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/bovino/editarChifre/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"editarChifre",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter bovino",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bovino/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de bovino",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bovino/obterListaBovino",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"obterListaBovino"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar bovino",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bovino/apagarBovino/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bovino",
+								"apagarBovino",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carteira",
+			"item": [
+				{
+					"name": "Adicionar carteira",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idBovino\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carteira/adicionarCarteira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carteira",
+								"adicionarCarteira"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter carteira",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carteira/obterCarteira/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carteira",
+								"obterCarteira",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter carteira por id do bovino",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carteira/obterCarteiraPorIdBovino/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carteira",
+								"obterCarteiraPorIdBovino",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de carteira",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carteira/obterListaCarteira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carteira",
+								"obterListaCarteira"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar carteira",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carteira/apagarCarteira/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carteira",
+								"apagarCarteira",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aplicação",
+			"item": [
+				{
+					"name": "Adicionar aplicação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idCarteira\": 1,\n    \"idVacina\": 2,\n    \"dose\": 1,\n    \"data\" : \"2022-11-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/aplicacao/adicionarAplicacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aplicacao",
+								"adicionarAplicacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de aplicação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aplicacao/obterListaAplicacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aplicacao",
+								"obterListaAplicacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar aplicação",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aplicacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aplicacao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vacina",
+			"item": [
+				{
+					"name": "Adicionar vacina",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Pfizer\",\n    \"periodoEmDias\" : 10,\n    \"informacoesExtras\" : \"3 meses de intervalo\",\n    \"idFabricante\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/vacina/adicionarVacina",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vacina",
+								"adicionarVacina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar vacina",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Pfizer\",\n    \"periodoEmDias\" : 10,\n    \"informacoesExtras\" : \"3 meses de intervalo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/vacina/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vacina",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter vacina",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/vacina/obterVacinaPorId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vacina",
+								"obterVacinaPorId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter lista de vacina",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/vacina/obterListaVacina",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vacina",
+								"obterListaVacina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar vacina",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vacina/apagarVacina/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vacina",
+								"apagarVacina",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fabricante",
+			"item": [
+				{
+					"name": "Adicionar fabricante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Oxford\",\n    \"ddg\" : \"000\",\n    \"cnpj\" : \"000\",\n    \"nacionalidadeIndustria\" : \"Inglesa\",\n    \"cidade\" : \"Natal\",\n    \"estado\" : \"RN\",\n    \"cep\" : \"00000-000\",\n    \"bairro\" : \"Lagoa Nova\",\n    \"rua\" : \"Rua Maria\",\n    \"numero\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fabricante/adicionarFabricante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fabricante",
+								"adicionarFabricante"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar fabricante",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\" : \"Johnson&Johnson\",\n    \"ddg\" : \"000\",\n    \"cnpj\" : \"000\",\n    \"nacionalidadeIndustria\" : \"Americana\",\n    \"cidade\" : \"Natal\",\n    \"estado\" : \"RN\",\n    \"cep\" : \"00000-000\",\n    \"bairro\" : \"Lagoa Nova\",\n    \"rua\" : \"Rua Maria\",\n    \"numero\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/fabricante/editarFabricante/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fabricante",
+								"editarFabricante",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter fabricante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fabricante/obterFabricantePorId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fabricante",
+								"obterFabricantePorId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar fabricante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/fabricante/apagarFabricante/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fabricante",
+								"apagarFabricante",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
