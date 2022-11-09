@@ -1,6 +1,7 @@
 package com.imd0409.vacinacaobovino.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -90,9 +91,9 @@ public class PessoaServiceImpl implements PessoaService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!"));
         
         String[] roles = new String[] {};
-        if(pessoa.getPapel() == "GESTOR") {
+        if(Objects.equals(pessoa.getPapel(), "GESTOR")) {
             roles =  new String[] { "GESTOR", "VETERINARIO", "PROPRIETARIO" };
-        } else if(pessoa.getPapel() == "VETERINARIO"){
+        } else if(Objects.equals(pessoa.getPapel(), "VETERINARIO")){
             roles =  new String[] { "VETERINARIO" };
         } else {
             roles =  new String[] { "PROPRIETARIO" };
