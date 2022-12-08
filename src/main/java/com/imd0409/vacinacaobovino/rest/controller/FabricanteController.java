@@ -1,5 +1,7 @@
 package com.imd0409.vacinacaobovino.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,6 +39,11 @@ public class FabricanteController {
     public int adicionarFabricante( @RequestBody FabricanteDTO dto ){
         Fabricante fabricante = fabricanteService.adicionarFabricante(dto);
         return fabricante.getId();
+    }
+
+    @GetMapping("/obterListaFabricante")
+    public List<Fabricante> obterListaCarteira(){
+        return fabricanteService.getListaFabricante();
     }
 
     @GetMapping("/obterFabricantePorId/{id}")
