@@ -18,5 +18,6 @@ public interface PessoaService {
     public void editarTelefone(Integer id, String novoTelefone); // editar telefone
     public void apagarPessoa(Integer id);    
     public UserDetails loadUserByUsername(String username);
+    public UserDetails loadUserById(int id);
     public UserDetails autenticar(Pessoa pessoa);
 }

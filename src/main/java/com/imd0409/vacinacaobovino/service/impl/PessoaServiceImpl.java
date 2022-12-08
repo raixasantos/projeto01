@@ -86,8 +86,30 @@ public class PessoaServiceImpl implements PessoaService {
 
     
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+        
         Pessoa pessoa = pessoaRepository.findByLogin(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!"));
+        
+        String[] roles = new String[] {};
+        if(Objects.equals(pessoa.getPapel(), "GESTOR")) {
+            roles =  new String[] { "GESTOR", "VETERINARIO", "PROPRIETARIO" };
+        } else if(Objects.equals(pessoa.getPapel(), "VETERINARIO")){
+            roles =  new String[] { "VETERINARIO" };
+        } else {
+            roles =  new String[] { "PROPRIETARIO" };
+        }
+        
+        return User
+                .builder()
+                .username(pessoa.getLogin())
+                .password(pessoa.getSenha())
+                .roles(roles)
+                .build();
+    }
+
+    public UserDetails loadUserById(int id) throws UsernameNotFoundException {
+
+        Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!"));
         
         String[] roles = new String[] {};

@@ -9,8 +9,6 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.imd0409.vacinacaobovino.model.Pessoa;
-
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -27,7 +25,7 @@ public class JwtService {
     @Value("${security.jwt.chave-assinatura}")
     private String chaveAssinatura;
 
-    public String gerarToken( Pessoa pessoa ){
+    public String gerarToken(int idPessoa){
         long expString = Long.valueOf(expiracao);
         LocalDateTime dataHoraExpiracao = LocalDateTime.now().plusMinutes(expString);
         Instant instant = dataHoraExpiracao.atZone(ZoneId.systemDefault()).toInstant(); //localdatetime to objeto instante
@@ -38,7 +36,7 @@ public class JwtService {
 
         return Jwts //retorna o jwt
                 .builder()
-                .setSubject(pessoa.getLogin()) //colocar informação útil para o token
+                .setSubject((String.valueOf(idPessoa))) //colocar informação útil para o token
                 .setExpiration(data) //data de expieração
                 .signWith(key) //assinatura do token (recebe parametro key)
                 .compact();

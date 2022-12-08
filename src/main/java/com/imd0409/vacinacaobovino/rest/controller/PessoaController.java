@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,9 +57,14 @@ public class PessoaController {
             Pessoa pessoaAutenticada = new Pessoa();
             pessoaAutenticada.setLogin(credenciais.getLogin());
             pessoaAutenticada.setSenha(credenciais.getSenha());            
-            pessoaService.autenticar(pessoaAutenticada);
-            String token = jwtService.gerarToken(pessoaAutenticada);
-            return new TokenDTO(pessoaAutenticada.getLogin(), token);
+            UserDetails details = pessoaService.autenticar(pessoaAutenticada);
+            int idPessoa = 0;
+            String token = null;
+            if(details.isCredentialsNonExpired()) {
+                idPessoa = pessoaRepository.findByLogin(credenciais.getLogin()).get().getId();
+                token = jwtService.gerarToken(idPessoa);
+            }
+            return new TokenDTO(idPessoa, token);
         } catch (UsernameNotFoundException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
