@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.imd0409.vacinacaobovino.model.Fabricante;
 import com.imd0409.vacinacaobovino.model.Vacina;
 import com.imd0409.vacinacaobovino.repository.VacinaRepository;
+import com.imd0409.vacinacaobovino.rest.dto.InformacoesFabricanteDTO;
 import com.imd0409.vacinacaobovino.rest.dto.InformacoesVacinaDTO;
 import com.imd0409.vacinacaobovino.rest.dto.NomeCnpjFabricanteDTO;
 import com.imd0409.vacinacaobovino.rest.dto.NovaVacinaDTO;
@@ -60,10 +61,35 @@ public class VacinaController {
         List<Vacina> vacinas = vacinaService.obterListaVacina();
         List<VacinaDTO> vacinasDTO = new ArrayList<VacinaDTO>();
         for (Vacina vacina : vacinas) {
-            // criar lista dto de fabricantes e aplicações
-            vacinasDTO.add(new VacinaDTO(/*vacina.nome, lista de fabricantes, periodo em dias, infos extras, lista de aplicações*/));
+            List<InformacoesFabricanteDTO> fabricantes = new ArrayList<InformacoesFabricanteDTO>();
+            for(Fabricante fabricante : vacina.getFabricantes()) {
+                fabricantes.add(converterFabricante(fabricante));
+            }
+
+            vacinasDTO.add(new VacinaDTO(
+                vacina.getNome(), fabricantes, 
+                vacina.getPeriodoEmDias(), vacina.getInformacoesExtras()
+            ));
         }
         return vacinasDTO;
+    }
+
+
+    private InformacoesFabricanteDTO converterFabricante(Fabricante fabricante) {
+        return InformacoesFabricanteDTO
+                .builder()
+                .id(fabricante.getId())
+                .nome(fabricante.getNome())
+                .ddg(fabricante.getDdg())
+                .cnpj(fabricante.getCnpj())
+                .nacionalidadeIndustria(fabricante.getNacionalidadeIndustria())
+                .cidade(fabricante.getCidade())
+                .estado(fabricante.getEstado())
+                .cep(fabricante.getCep())
+                .bairro(fabricante.getBairro())
+                .rua(fabricante.getRua())
+                .numero(fabricante.getNumero())
+                .build();
     }
 
     private VacinasDTO converterVacinas(List<Vacina> vacinas) {

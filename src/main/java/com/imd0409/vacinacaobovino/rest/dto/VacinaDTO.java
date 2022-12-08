@@ -2,9 +2,6 @@ package com.imd0409.vacinacaobovino.rest.dto;
 
 import java.util.List;
 
-import com.imd0409.vacinacaobovino.model.Aplicacao;
-import com.imd0409.vacinacaobovino.model.Fabricante;
-
 import lombok.*;
 
 /*
@@ -21,8 +18,7 @@ import lombok.*;
 public class VacinaDTO {
     // alterar fabricantes e aplicações para o tipo DTO 
     private String nome;
-    private List<Fabricante> fabricantes;
+    private List<InformacoesFabricanteDTO> fabricantes;
     private int periodoEmDias;
     private String informacoesExtras;
-    private List<Aplicacao> aplicacoes; 
 }
