@@ -1,5 +1,6 @@
 package com.imd0409.vacinacaobovino.rest.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,8 +56,14 @@ public class VacinaController {
     }
 
     @GetMapping("/obterListaVacina")
-    public List<Vacina> obterListaVacina(){
-        return vacinaService.obterListaVacina();
+    public List<VacinaDTO> obterListaVacina(){
+        List<Vacina> vacinas = vacinaService.obterListaVacina();
+        List<VacinaDTO> vacinasDTO = new ArrayList<VacinaDTO>();
+        for (Vacina vacina : vacinas) {
+            // criar lista dto de fabricantes e aplicações
+            vacinasDTO.add(new VacinaDTO(/*vacina.nome, lista de fabricantes, periodo em dias, infos extras, lista de aplicações*/));
+        }
+        return vacinasDTO;
     }
 
     private VacinasDTO converterVacinas(List<Vacina> vacinas) {

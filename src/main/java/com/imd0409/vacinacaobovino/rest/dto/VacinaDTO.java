@@ -19,6 +19,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VacinaDTO {
+    // alterar fabricantes e aplicações para o tipo DTO 
     private String nome;
     private List<Fabricante> fabricantes;
     private int periodoEmDias;
