@@ -55,9 +55,8 @@ public class VacinaController {
     }
 
     @GetMapping("/obterListaVacina")
-    public VacinasDTO obterListaVacina(){
-        List<Vacina> vacinasEncontradas = vacinaService.obterListaVacina();
-        return converterVacinas(vacinasEncontradas);
+    public List<Vacina> obterListaVacina(){
+        return vacinaService.obterListaVacina();
     }
 
     private VacinasDTO converterVacinas(List<Vacina> vacinas) {
